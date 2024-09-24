@@ -16,7 +16,6 @@ public class Weapon : MonoBehaviour
     public int burstBulletsLeft;
     public float spreadIntensity;
     public GameObject muzzleEffect;
-    internal Animator animator;
     public float reloadTime;
     public int magazineSize, bulletsLeft;
     public bool isReloading;
@@ -42,7 +41,6 @@ public class Weapon : MonoBehaviour
     {
         readyToShoot = true;
         burstBulletsLeft = bulletsPerBurst;
-        animator = GetComponent<Animator>();
         bulletsLeft = magazineSize;
     }
 
@@ -90,9 +88,6 @@ public class Weapon : MonoBehaviour
     {
         bulletsLeft--;
 
-        muzzleEffect.GetComponent<ParticleSystem>().Play();
-        animator.SetTrigger("RECOIL");
-
         readyToShoot = false;
         Vector3 shootingDirection = CalculateDirectionAndSpread().normalized;
 
@@ -120,7 +115,6 @@ public class Weapon : MonoBehaviour
 
     private void Reload()
     {
-        animator.SetTrigger("RELOAD");
         isReloading = true;
         Invoke("ReloadCompleted", reloadTime);
     }
