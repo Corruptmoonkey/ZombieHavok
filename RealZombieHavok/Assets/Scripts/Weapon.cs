@@ -20,8 +20,6 @@ public class Weapon : MonoBehaviour
     public float reloadTime;
     public int magazineSize, bulletsLeft;
     public bool isReloading;
-    public Vector3 spawnPosition;
-    public Vector3 spawnRotation;
 
     public enum ShootingMode
     {
@@ -161,7 +159,7 @@ public class Weapon : MonoBehaviour
         float x = UnityEngine.Random.Range(-spreadIntensity, spreadIntensity);
         float y = UnityEngine.Random.Range(-spreadIntensity, spreadIntensity);
 
-        return direction +new Vector3(x, y, 0);
+        return direction + new Vector3(x, y, 0);
     }
 
 
