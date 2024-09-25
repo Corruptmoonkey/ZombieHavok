@@ -1789,13 +1789,45 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2055122421653837459, guid: 6f1a7354265853f44b0ed5e2e43676ad, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.000009100884
+      objectReference: {fileID: 0}
+    - target: {fileID: 2055122421653837459, guid: 6f1a7354265853f44b0ed5e2e43676ad, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.025956154
+      objectReference: {fileID: 0}
+    - target: {fileID: 2055122421653837459, guid: 6f1a7354265853f44b0ed5e2e43676ad, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.15395078
+      objectReference: {fileID: 0}
+    - target: {fileID: 2055122421653837459, guid: 6f1a7354265853f44b0ed5e2e43676ad, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.011007524
+      objectReference: {fileID: 0}
+    - target: {fileID: 2055122421653837459, guid: 6f1a7354265853f44b0ed5e2e43676ad, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.99993944
+      objectReference: {fileID: 0}
+    - target: {fileID: 2055122421653837459, guid: 6f1a7354265853f44b0ed5e2e43676ad, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -5.8207647e-11
+      objectReference: {fileID: 0}
+    - target: {fileID: 2055122421653837459, guid: 6f1a7354265853f44b0ed5e2e43676ad, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.000000022351736
+      objectReference: {fileID: 0}
+    - target: {fileID: 2055122421653837459, guid: 6f1a7354265853f44b0ed5e2e43676ad, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -181.261
+      objectReference: {fileID: 0}
     - target: {fileID: 3581934548360496462, guid: 6f1a7354265853f44b0ed5e2e43676ad, type: 3}
       propertyPath: magazineSize
       value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 3581934548360496462, guid: 6f1a7354265853f44b0ed5e2e43676ad, type: 3}
       propertyPath: isActiveWeapon
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3581934548360496462, guid: 6f1a7354265853f44b0ed5e2e43676ad, type: 3}
       propertyPath: bulletsPerBurst
