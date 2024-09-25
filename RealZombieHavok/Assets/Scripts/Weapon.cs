@@ -93,7 +93,7 @@ public class Weapon : MonoBehaviour
 
         GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.position, Quaternion.identity);
 
-        bullet.transform.forward = shootingDirection;
+        bullet.transform.forward = -shootingDirection;
 
         if(allowReset)
 {
