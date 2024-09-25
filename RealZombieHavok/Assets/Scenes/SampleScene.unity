@@ -1579,13 +1579,33 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2055122421653837459, guid: 6f1a7354265853f44b0ed5e2e43676ad, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.009316086
+      objectReference: {fileID: 0}
+    - target: {fileID: 2055122421653837459, guid: 6f1a7354265853f44b0ed5e2e43676ad, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.9999566
+      objectReference: {fileID: 0}
+    - target: {fileID: 2055122421653837459, guid: 6f1a7354265853f44b0ed5e2e43676ad, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.000000010011717
+      objectReference: {fileID: 0}
+    - target: {fileID: 2055122421653837459, guid: 6f1a7354265853f44b0ed5e2e43676ad, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.000000014901159
+      objectReference: {fileID: 0}
+    - target: {fileID: 2055122421653837459, guid: 6f1a7354265853f44b0ed5e2e43676ad, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -181.068
+      objectReference: {fileID: 0}
     - target: {fileID: 3581934548360496462, guid: 6f1a7354265853f44b0ed5e2e43676ad, type: 3}
       propertyPath: magazineSize
       value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 3581934548360496462, guid: 6f1a7354265853f44b0ed5e2e43676ad, type: 3}
       propertyPath: isActiveWeapon
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3581934548360496462, guid: 6f1a7354265853f44b0ed5e2e43676ad, type: 3}
       propertyPath: bulletsPerBurst
@@ -1746,5 +1766,5 @@ SceneRoots:
   - {fileID: 42916541}
   - {fileID: 1984710994}
   - {fileID: 654980625}
-  - {fileID: 58304313}
   - {fileID: 339363701}
+  - {fileID: 58304313}
