@@ -1,3 +1,6 @@
+// Edited by Jay Gunderson
+// 10/05/2024
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,10 +9,11 @@ public class PlayerMove : MonoBehaviour
 {
     private CharacterController controller;
 
-    public float speed = 12f;
-    public float gravity = -9.81f * 2;
-    public float jumpHeight = 3f;
-
+    public float movementSpeed;
+    public float speed = 10f;
+    public float gravity = -9.81f;
+    public float jumpHeight = 5f;
+    
     public Transform groundCheck;
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
@@ -22,6 +26,10 @@ public class PlayerMove : MonoBehaviour
     private Vector3 lastPosition = new Vector3(0f, 0f, 0f);
 
 
+ 
+
+
+
     void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -30,10 +38,20 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        movementSpeed = speed;
+        // If leftShift is held down the player sprints
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            movementSpeed *= 2;
+        }
+
+
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+        Debug.Log("Is Grounded: " + isGrounded);
+
         if (isGrounded && velocity.y < 0)
         {
-            velocity.y = -2f;
+            velocity.y = 0f;
         }
 
         float x = Input.GetAxis("Horizontal");
@@ -41,7 +59,7 @@ public class PlayerMove : MonoBehaviour
 
         Vector3 move = transform.right * x + transform.forward * z;
 
-        controller.Move(move * speed * Time.deltaTime);
+        controller.Move(move * movementSpeed * Time.deltaTime);
 
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
@@ -63,5 +81,6 @@ public class PlayerMove : MonoBehaviour
 
         lastPosition = gameObject.transform.position;
 
+        
     }
 }
