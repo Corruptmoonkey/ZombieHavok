@@ -1,5 +1,5 @@
 // Written by Jay Gunderson
-// 06/11/2024
+// 10/07/2024
 /*
  Update 06/11/2024:
     Added grounding and drag to my player's movement 

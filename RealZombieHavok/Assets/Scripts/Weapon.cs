@@ -1,3 +1,6 @@
+// Edited by Jay Gunderson
+// 10/07/2024
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,6 +23,9 @@ public class Weapon : MonoBehaviour
     public int magazineSize, bulletsLeft;
     public bool isReloading;
 
+
+
+    public int weaponDamage;
     public enum ShootingMode
     {
         Single,
@@ -92,6 +98,9 @@ public class Weapon : MonoBehaviour
         Vector3 shootingDirection = CalculateDirectionAndSpread().normalized;
 
         GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.position, Quaternion.identity);
+
+        Bullet bul = bullet.GetComponent<Bullet>();
+        bul.bulletDamage = weaponDamage;
 
         bullet.transform.forward = -shootingDirection;
 
