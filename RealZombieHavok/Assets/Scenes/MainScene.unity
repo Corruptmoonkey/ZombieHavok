@@ -952,6 +952,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _PauseMenu: {fileID: 1046843921}
+  Player: {fileID: 1939069031}
 --- !u!1 &422230145
 GameObject:
   m_ObjectHideFlags: 0
@@ -3337,14 +3338,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a11f89a4e568d44781c6bcca7473096, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 12
-  gravity: -19.62
-  jumpHeight: 3
-  groundCheck: {fileID: 141703727}
-  groundDistance: 0.4
-  groundMask:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!1 &1984710992
 GameObject:
   m_ObjectHideFlags: 0
