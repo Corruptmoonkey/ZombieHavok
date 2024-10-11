@@ -1,10 +1,3 @@
-// Written by Jay Gunderson
-// 10/07/2024
-/*
- Update 06/11/2024:
-    Added grounding and drag to my player's movement 
-    to make movement smoother
- */
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,11 +12,11 @@ public class PlayerMovement : MonoBehaviour
     public float runSpeed;
     public KeyCode sprintKey = KeyCode.LeftShift;
     public Transform orientation; // Player's orientation
-    
+
     float horizontalInput; // Horizontal keyboard inputs
     float verticalInput; // Vertical keyboard inputs
 
-    Vector3 moveDirection; 
+    Vector3 moveDirection;
     Rigidbody rb;
 
 
@@ -46,10 +39,10 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>(); // Gets the rigidbody we declared in our editor
         rb.freezeRotation = true; // Freezes our player's rotation, preventing us from falling over like earlier
         readyToJump = true;
-        
+
     }
 
-  
+
     // Update is called once per frame
     void Update()
     {
@@ -57,7 +50,7 @@ public class PlayerMovement : MonoBehaviour
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround); //  Deterrmiens if player is grounded
         MyInput(); // Fetches keyboard input each frame
         SpeedControl();
-       
+
         // Handles drag
         if (grounded)
         {
@@ -78,7 +71,7 @@ public class PlayerMovement : MonoBehaviour
         verticalInput = Input.GetAxisRaw("Vertical"); // W and S & Up/Down arrow keys
 
         // Checks if space is pressed, then jump if it was
-        if(Input.GetKey(jumpKey) && readyToJump && grounded)
+        if (Input.GetKey(jumpKey) && readyToJump && grounded)
         {
             readyToJump = false;
             Jump();
@@ -93,11 +86,11 @@ public class PlayerMovement : MonoBehaviour
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput; // Allows us to walk in the dirrection we are looking
 
         // On Ground
-        if (grounded) 
+        if (grounded)
         {
             // Checks if isRunning is true, and if so will set current speed to runspeed
             bool isRunning = Input.GetKey(KeyCode.LeftShift);
-            
+
             if (isRunning)
             {
                 moveSpeed = runSpeed;
@@ -109,7 +102,7 @@ public class PlayerMovement : MonoBehaviour
             }
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force); // Adds force to our movements  
         }
-        else if(!grounded)
+        else if (!grounded)
         {
             moveSpeed = walkSpeed;
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force); // Adds force to our movements 
@@ -120,13 +113,13 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
         // Limits velocity
-        if(flatVel.magnitude > moveSpeed)
+        if (flatVel.magnitude > moveSpeed)
         {
             Vector3 limitedVel = flatVel.normalized * moveSpeed;
             rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
         }
-        
-        
+
+
     }
 
     private void Jump()

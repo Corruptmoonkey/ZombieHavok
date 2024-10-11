@@ -1,5 +1,3 @@
-// Written by Jay Gunderson
-// 06/11/2024
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -27,15 +25,15 @@ public class PlayerCam : MonoBehaviour
         // Mouse input
         float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensitivityX; // X-Axis 
         float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensitivityY; // Y-Axis
-        
+
         // Rotations
-        yRotation = yRotation + mouseX; 
-        xRotation = xRotation - mouseY; 
+        yRotation = yRotation + mouseX;
+        xRotation = xRotation - mouseY;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f); // This limits our y rotation to 90 degrees
 
         // Rotate camera and orientation of player
         transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
         orientation.rotation = Quaternion.Euler(0, yRotation, 0);
-        
+
     }
 }
