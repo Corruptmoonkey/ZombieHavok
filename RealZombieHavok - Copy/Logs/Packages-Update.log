@@ -1,0 +1,24 @@
+
+=== Wed Oct  2 20:22:59 2024
+
+Packages were changed.
+Update Mode: updateDependencies
+
+The following packages were updated:
+  com.unity.postprocessing from version 2.3.0 to 3.4.0
+
+=== Wed Oct  2 20:22:59 2024
+
+Packages were changed.
+Update Mode: mergeDefaultDependencies
+
+The following packages were added:
+  com.unity.postprocessing@3.4.0
+
+=== Wed Oct  2 20:24:36 2024
+
+Packages were changed.
+Update Mode: updateDependencies
+
+The following packages were updated:
+  com.unity.postprocessing from version 2.3.0 to 3.4.0
