@@ -31,8 +31,8 @@ public class Bullet : MonoBehaviour
         if (objectWeHit.gameObject.CompareTag("Zombie"))
         {
             
-            objectWeHit.gameObject.GetComponent<Zombie>().TakeDamage(bulletDamage);
-            print("You hit a zombie!" + " HP remaining: " + objectWeHit.gameObject.GetComponent<Zombie>().getHP());
+            objectWeHit.gameObject.GetComponent<Enemy>().TakeDamage(bulletDamage);
+            print("You hit a zombie!" + " HP remaining: " + objectWeHit.gameObject.GetComponent<Enemy>().getHP());
             Destroy(gameObject);// Destroys  buillet
         }
     }
