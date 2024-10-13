@@ -18,19 +18,6 @@ public class Enemy : MonoBehaviour
         navAgent = GetComponent<NavMeshAgent>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (navAgent.velocity.magnitude > 0.1f) // If moving
-        {
-            animator.SetBool("isWalking", true); // Run walking animation
-        }
-        else
-        {
-            animator.SetBool("isWalking", false);
-        }
-    }
-
 
 
     public  void TakeDamage(int damageAmount)

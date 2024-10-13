@@ -10,6 +10,7 @@ TagManager:
   - Zombie
   - Cloth
   - Enemy
+  - Waypoints
   layers:
   - Default
   - TransparentFX
