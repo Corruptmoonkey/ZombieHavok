@@ -5,7 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Weapon : MonoBehaviour
+public class WeaponScript : MonoBehaviour
 {
     public bool isActiveWeapon;
     public GameObject bulletPrefab;
