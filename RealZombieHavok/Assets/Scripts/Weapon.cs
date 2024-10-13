@@ -93,7 +93,14 @@ public class Weapon : MonoBehaviour
 
         GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.position, Quaternion.identity);
 
+<<<<<<< Updated upstream
         bullet.transform.forward = -shootingDirection;
+=======
+        Bullet bul = bullet.GetComponent<Bullet>();
+        bul.bulletDamage = weaponDamage;
+
+        bullet.transform.forward = shootingDirection;
+>>>>>>> Stashed changes
 
         if(allowReset)
 {

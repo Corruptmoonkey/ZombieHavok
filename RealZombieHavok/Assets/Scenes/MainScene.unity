@@ -5806,19 +5806,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 741064341}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &757407421
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6892534959228368775}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 015c4b1dd13107448877e12a2607bd73, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cameraPosition: {fileID: 897996079283019020}
 --- !u!1 &776824923
 GameObject:
   m_ObjectHideFlags: 0
@@ -6946,7 +6933,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 963194225}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9002e81281aa6a844ad1987f03df5235, type: 3}
+  m_Script: {fileID: 11500000, guid: 565407d9cf6da5c488d1715d4cab3ed2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   sensitivityX: 100
@@ -9494,7 +9481,7 @@ MonoBehaviour:
   runSpeed: 20
   sprintKey: 304
   orientation: {fileID: 5716627488947087973}
-  playerHeight: 2
+  playerHeight: 1.8
   groundDrag: 5
   whatIsGround:
     serializedVersion: 2
@@ -13321,15 +13308,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2055122421653837459, guid: 6f1a7354265853f44b0ed5e2e43676ad, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.000009100884
+      value: -0.0042
       objectReference: {fileID: 0}
     - target: {fileID: 2055122421653837459, guid: 6f1a7354265853f44b0ed5e2e43676ad, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.025956154
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: 2055122421653837459, guid: 6f1a7354265853f44b0ed5e2e43676ad, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.15395078
+      value: -0.152
       objectReference: {fileID: 0}
     - target: {fileID: 2055122421653837459, guid: 6f1a7354265853f44b0ed5e2e43676ad, type: 3}
       propertyPath: m_LocalRotation.w
@@ -14039,7 +14026,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2158732878136254620}
-  - component: {fileID: 757407421}
+  - component: {fileID: 6892534959228368776}
   m_Layer: 0
   m_Name: CameraHolder
   m_TagString: Untagged
@@ -14047,6 +14034,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &6892534959228368776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6892534959228368775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41996fc2a52eb224fa0d42b26899fd70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraPosition: {fileID: 897996079283019020}
 --- !u!33 &7282561769190440963
 MeshFilter:
   m_ObjectHideFlags: 0
