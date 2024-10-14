@@ -12,7 +12,7 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] Image _PauseMenu;
     [SerializeField] Image _OptionsMenu;
     [SerializeField] GameObject Player;
-    //MoveCamera MoveCamera;
+    PlayerCam PlayerCam;
     public void Start()
     {
     //    MoveCamera = Player.GetComponent<MoveCamera>();
