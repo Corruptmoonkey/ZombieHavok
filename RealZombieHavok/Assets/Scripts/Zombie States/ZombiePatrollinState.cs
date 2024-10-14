@@ -46,7 +46,7 @@ public class ZombiePatrollinState : StateMachineBehaviour
 
         }
 
-        timer = Time.deltaTime;
+        timer += Time.deltaTime;
         if(timer > patrollingTime)
         {
             animator.SetBool("isPatrolling", false);
@@ -55,7 +55,7 @@ public class ZombiePatrollinState : StateMachineBehaviour
         float distanceFromPlayer = Vector3.Distance(player.position, animator.transform.position);
         if (distanceFromPlayer < detectionArea) // If player in radius of enemy, the enemy will chase
         {
-            animator.SetBool("isPatrolling", true);
+            animator.SetBool("isChasing", true);
         }
     }
 

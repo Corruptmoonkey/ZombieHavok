@@ -10,6 +10,8 @@ public class Enemy : MonoBehaviour
 
 
     private NavMeshAgent navAgent;
+    public bool isDead = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,7 +39,7 @@ public class Enemy : MonoBehaviour
             {
                 animator.SetTrigger("DIE2");
             }
-          
+            isDead = true;
         }
 
         else
@@ -51,5 +53,17 @@ public class Enemy : MonoBehaviour
         return HP;
     }
 
- 
+
+    public void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, 2.5f); // Start attacking/Stop attacking
+
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, 18f); // Detection (Start Chasing)
+
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, 21f); // Stop Chasing
+    }
+
 }
