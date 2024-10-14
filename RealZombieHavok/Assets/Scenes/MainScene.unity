@@ -7172,6 +7172,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PauseMenuManager
       objectReference: {fileID: 0}
+    - target: {fileID: 336655485720902485, guid: e80b44b5b62896c4d895eb9fbd3ade60, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3106570434860253438, guid: e80b44b5b62896c4d895eb9fbd3ade60, type: 3}
       propertyPath: PlayerCam
       value: 
@@ -7428,7 +7432,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 015c4b1dd13107448877e12a2607bd73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraPosition: {fileID: 2158732878136254620}
 --- !u!33 &7282561769190440963
 MeshFilter:
   m_ObjectHideFlags: 0

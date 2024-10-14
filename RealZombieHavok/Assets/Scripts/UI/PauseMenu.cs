@@ -12,10 +12,10 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] Image _PauseMenu;
     [SerializeField] Image _OptionsMenu;
     [SerializeField] GameObject Player;
-    MoveCamera MoveCamera;
+    //MoveCamera MoveCamera;
     public void Start()
     {
-        MoveCamera = Player.GetComponent<MoveCamera>();
+    //    MoveCamera = Player.GetComponent<MoveCamera>();
     }
     void Update()
     {
@@ -48,7 +48,7 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = IsPaused ? 1.0f : 0.0f;
         // unlocks cursor to allow it to select.
         // disable mouse aiming
-        MoveCamera.enabled = IsPaused;
+       // MoveCamera.enabled = IsPaused;
         _PauseMenu.gameObject.SetActive(!IsPaused);
         _OptionsMenu.gameObject.SetActive(false);
         Cursor.lockState = IsPaused ? CursorLockMode.Locked : CursorLockMode.Confined;

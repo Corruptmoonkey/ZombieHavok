@@ -11,10 +11,10 @@ public class PauseMenu : MonoBehaviour
     bool IsPaused = false;
     [SerializeField] Image _PauseMenu;
     [SerializeField] GameObject Player;
-    MouseMove MouseMove;
+    //MouseMove MouseMove;
     public void Start()
     {
-        MouseMove = Player.GetComponent<MouseMove>();
+        //MouseMove = Player.GetComponent<MouseMove>();
     }
     void Update()
     {
@@ -43,7 +43,7 @@ public class PauseMenu : MonoBehaviour
         // unlocks cursor to allow it to select.
         Cursor.lockState = IsPaused ? CursorLockMode.Locked : CursorLockMode.Confined;
         //disable mouse aiming
-        MouseMove.enabled = IsPaused;
+       // MouseMove.enabled = IsPaused;
         _PauseMenu.gameObject.SetActive(!IsPaused);
         IsPaused = !IsPaused;
     }
