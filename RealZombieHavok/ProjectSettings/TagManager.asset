@@ -8,9 +8,7 @@ TagManager:
   - Wall
   - Target
   - Zombie
-  - Cloth
-  - Enemy
-  - Waypoints
+  - SettingsManager
   layers:
   - Default
   - TransparentFX

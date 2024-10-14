@@ -15,6 +15,10 @@ public class PlayerCam : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // by Steven Pichelman 10/12/2024. grabs mouse sensitivity from settings
+        sensitivityX = GameObject.FindGameObjectWithTag("SettingsManager").GetComponent<SettingsManager>().MouseSensitivity;
+        sensitivityY = sensitivityX; //currently no distinction between vertical and horizontal sensitivity
+
         Cursor.lockState = CursorLockMode.Locked; // Locks the cursor in the middle of the screen
         Cursor.visible = false; // Hides the cursor
     }

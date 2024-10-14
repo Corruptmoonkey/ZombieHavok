@@ -10,14 +10,16 @@ public class PauseMenu : MonoBehaviour
 {
     bool IsPaused = false;
     [SerializeField] Image _PauseMenu;
+    [SerializeField] Image _OptionsMenu;
     [SerializeField] GameObject Player;
-    MouseMove MouseMove;
+    MoveCamera MoveCamera;
     public void Start()
     {
-        MouseMove = Player.GetComponent<MouseMove>();
+        MoveCamera = Player.GetComponent<MoveCamera>();
     }
     void Update()
     {
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
            TogglePauseMenu();
@@ -27,24 +29,29 @@ public class PauseMenu : MonoBehaviour
     {
         TogglePauseMenu();
     }
+
     public void Options()
     {
-        SceneManager.LoadScene("OptionsMenu");
+        // toggles between main pause and options menu
+        _PauseMenu.gameObject.SetActive(_OptionsMenu.gameObject.activeSelf);
+        _OptionsMenu.gameObject.SetActive(!_PauseMenu.gameObject.activeSelf);
     }
+
     public void ToMainMenu()
     {
         SceneManager.LoadScene("MainMenu");
         Time.timeScale = 1f;
     }
+
     public void TogglePauseMenu()
     {
         Time.timeScale = IsPaused ? 1.0f : 0.0f;
-        Debug.Log(Time.timeScale.ToString());
         // unlocks cursor to allow it to select.
-        Cursor.lockState = IsPaused ? CursorLockMode.Locked : CursorLockMode.Confined;
-        //disable mouse aiming
-        MouseMove.enabled = IsPaused;
+        // disable mouse aiming
+        MoveCamera.enabled = IsPaused;
         _PauseMenu.gameObject.SetActive(!IsPaused);
+        _OptionsMenu.gameObject.SetActive(false);
+        Cursor.lockState = IsPaused ? CursorLockMode.Locked : CursorLockMode.Confined;
         IsPaused = !IsPaused;
     }
 }
