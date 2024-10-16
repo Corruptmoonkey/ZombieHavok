@@ -122,11 +122,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &204628876 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4407177007138464156, guid: 331dab3f61653a14b8380e97d9afa6ae, type: 3}
+--- !u!114 &204628879 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7184642723162499734, guid: 331dab3f61653a14b8380e97d9afa6ae, type: 3}
   m_PrefabInstance: {fileID: 474374886478231600}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &245894364 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4331886075458481124, guid: 331dab3f61653a14b8380e97d9afa6ae, type: 3}
@@ -215,9 +221,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MouseSensitivity: 0
   Difficulty: 0
-  sldrMouseSensitivity: {fileID: 204628876}
+  sldrMouseSensitivity: {fileID: 204628879}
   sldrDifficulty: {fileID: 872769332}
-  MainCamera: {fileID: 1774187563}
+  PlayerCam: {fileID: 1774187567}
 --- !u!1 &788794555
 GameObject:
   m_ObjectHideFlags: 0
@@ -527,7 +533,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1774187563}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73efcc823cd88da40b2875c6ea76988c, type: 3}
+  m_Script: {fileID: 11500000, guid: 9002e81281aa6a844ad1987f03df5235, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   sensitivityX: 0

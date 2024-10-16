@@ -3241,12 +3241,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 963194225}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73efcc823cd88da40b2875c6ea76988c, type: 3}
+  m_Script: {fileID: 11500000, guid: 9002e81281aa6a844ad1987f03df5235, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   sensitivityX: 100
   sensitivityY: 100
-  orientation: {fileID: 5716627488947087973}
+  orientation: {fileID: 4817671676198991900}
 --- !u!1 &1013085929
 GameObject:
   m_ObjectHideFlags: 0
@@ -5313,7 +5313,7 @@ Transform:
   m_GameObject: {fileID: 1749197098}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: -1.84, z: -1.9754119}
+  m_LocalPosition: {x: -943.6, y: 35.3, z: -1.9754119}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7109,11 +7109,17 @@ Transform:
   - {fileID: 963194228}
   m_Father: {fileID: 1749197099}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2531694686113731166 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8003678211751747648, guid: e80b44b5b62896c4d895eb9fbd3ade60, type: 3}
+--- !u!114 &2531694686113731169 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3571157362537196362, guid: e80b44b5b62896c4d895eb9fbd3ade60, type: 3}
   m_PrefabInstance: {fileID: 4628201264012307929}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4628201264012307929
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7149,7 +7155,7 @@ PrefabInstance:
     - target: {fileID: 3106570434860253438, guid: e80b44b5b62896c4d895eb9fbd3ade60, type: 3}
       propertyPath: sldrMouseSensitivity
       value: 
-      objectReference: {fileID: 2531694686113731166}
+      objectReference: {fileID: 2531694686113731169}
     - target: {fileID: 3571157362537196362, guid: e80b44b5b62896c4d895eb9fbd3ade60, type: 3}
       propertyPath: m_Value
       value: 100
@@ -7177,6 +7183,10 @@ PrefabInstance:
     - target: {fileID: 3571157362537196362, guid: e80b44b5b62896c4d895eb9fbd3ade60, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: OptionsMenu, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5850721396732299725, guid: e80b44b5b62896c4d895eb9fbd3ade60, type: 3}
+      propertyPath: m_text
+      value: ' Resume'
       objectReference: {fileID: 0}
     - target: {fileID: 6927348384460645349, guid: e80b44b5b62896c4d895eb9fbd3ade60, type: 3}
       propertyPath: Player

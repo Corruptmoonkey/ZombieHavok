@@ -14,7 +14,6 @@ public class PauseMenu : MonoBehaviour
     //MouseMove MouseMove;
     public void Start()
     {
-        //MouseMove = Player.GetComponent<MouseMove>();
     }
     void Update()
     {
@@ -42,8 +41,8 @@ public class PauseMenu : MonoBehaviour
         Debug.Log(Time.timeScale.ToString());
         // unlocks cursor to allow it to select.
         Cursor.lockState = IsPaused ? CursorLockMode.Locked : CursorLockMode.Confined;
-        //disable mouse aiming
-       // MouseMove.enabled = IsPaused;
+        // removes the ability to use weapon
+        Player.FindGameObjectsWithTag()
         _PauseMenu.gameObject.SetActive(!IsPaused);
         IsPaused = !IsPaused;
     }
