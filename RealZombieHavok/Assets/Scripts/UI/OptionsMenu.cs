@@ -8,35 +8,42 @@ public class OptionsMenu : MonoBehaviour
 {
     [SerializeField] float MouseSensitivity;
     [SerializeField] float Difficulty;
-    [SerializeField] GameObject sldrMouseSensitivity;
-    [SerializeField] GameObject sldrDifficulty;
-    [SerializeField] GameObject MainCamera;
-     PlayerCam PlayerCam;
+    [SerializeField] Slider sldrMouseSensitivity;
+    [SerializeField] Slider  sldrDifficulty;
+    [SerializeField] PlayerCam PlayerCam;
+
+    //PlayerCam PlayerCam;
 
         public void Start()
     {
         MouseSensitivity = PlayerPrefs.GetFloat("MouseSensitivity", 100f);
         Difficulty = PlayerPrefs.GetFloat("Difficulty", 0.5f);
-        PlayerCam = MainCamera.GetComponent<PlayerCam>();
+        //PlayerCam = MainCamera.GetComponent<PlayerCam>();
+        PlayerCam.sensitivityX = MouseSensitivity;
+        PlayerCam.sensitivityY = MouseSensitivity;
 
-        sldrMouseSensitivity.GetComponent<Slider>().value = MouseSensitivity;
-        sldrDifficulty.GetComponent<Slider>().value = Difficulty;
+        sldrMouseSensitivity.value = MouseSensitivity;
+        sldrMouseSensitivity.onValueChanged.AddListener(delegate { ChangeMouseSensitivity(); });
+
+        sldrDifficulty.value = Difficulty;
+        sldrDifficulty.onValueChanged.AddListener(delegate { ChangeDifficulty(); });
     }
     public void ChangeMouseSensitivity()
     {
-        MouseSensitivity = sldrMouseSensitivity.GetComponent<Slider>().value;
+        MouseSensitivity = sldrMouseSensitivity.value;
         PlayerCam.sensitivityX = MouseSensitivity;
         PlayerCam.sensitivityY = MouseSensitivity;
-        PlayerPrefs.SetFloat("MouseSensitivity", MouseSensitivity);
     }
     public void ChangeDifficulty()
     {
-        Difficulty = sldrDifficulty.GetComponent<Slider>().value;
-        PlayerPrefs.SetFloat("Difficulty", Difficulty);
-        Debug.Log(PlayerPrefs.GetFloat("Difficulty", 0.6f).ToString());
+        //currently there is no difficulty implemented.
+        Difficulty = sldrDifficulty.value;
     }
     public void ToMainMenu()
-    {
+    { 
+        //save values changed
+        PlayerPrefs.SetFloat("MouseSensitivity", MouseSensitivity);
+        PlayerPrefs.SetFloat("Difficulty", Difficulty);
         SceneManager.LoadScene("MainMenu");
     }
 
