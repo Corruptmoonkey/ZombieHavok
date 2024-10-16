@@ -7,25 +7,33 @@ using UnityEngine.UI;
 public class OptionsMenu : MonoBehaviour
 {
     [SerializeField] float MouseSensitivity;
+    [SerializeField] float Difficulty;
     [SerializeField] GameObject sldrMouseSensitivity;
+    [SerializeField] GameObject sldrDifficulty;
     [SerializeField] GameObject MainCamera;
-    [SerializeField] SettingsManager SettingsManager;
      PlayerCam PlayerCam;
 
         public void Start()
     {
-        SettingsManager = GameObject.FindGameObjectWithTag("SettingsManager").GetComponent<SettingsManager>(); // necessary to find this automatically as it will be referenced across scenes.
-        MouseSensitivity = SettingsManager.MouseSensitivity; // load existing value
+        MouseSensitivity = PlayerPrefs.GetFloat("MouseSensitivity", 100f);
+        Difficulty = PlayerPrefs.GetFloat("Difficulty", 0.5f);
         PlayerCam = MainCamera.GetComponent<PlayerCam>();
+
         sldrMouseSensitivity.GetComponent<Slider>().value = MouseSensitivity;
+        sldrDifficulty.GetComponent<Slider>().value = Difficulty;
     }
     public void ChangeMouseSensitivity()
     {
         MouseSensitivity = sldrMouseSensitivity.GetComponent<Slider>().value;
         PlayerCam.sensitivityX = MouseSensitivity;
         PlayerCam.sensitivityY = MouseSensitivity;
-        SettingsManager.MouseSensitivity = MouseSensitivity; // save value
-
+        PlayerPrefs.SetFloat("MouseSensitivity", MouseSensitivity);
+    }
+    public void ChangeDifficulty()
+    {
+        Difficulty = sldrDifficulty.GetComponent<Slider>().value;
+        PlayerPrefs.SetFloat("Difficulty", Difficulty);
+        Debug.Log(PlayerPrefs.GetFloat("Difficulty", 0.6f).ToString());
     }
     public void ToMainMenu()
     {
