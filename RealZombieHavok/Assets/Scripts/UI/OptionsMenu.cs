@@ -18,7 +18,6 @@ public class OptionsMenu : MonoBehaviour
     {
         MouseSensitivity = PlayerPrefs.GetFloat("MouseSensitivity", 100f);
         Difficulty = PlayerPrefs.GetFloat("Difficulty", 0.5f);
-        //PlayerCam = MainCamera.GetComponent<PlayerCam>();
         PlayerCam.sensitivityX = MouseSensitivity;
         PlayerCam.sensitivityY = MouseSensitivity;
 
@@ -33,14 +32,11 @@ public class OptionsMenu : MonoBehaviour
         MouseSensitivity = sldrMouseSensitivity.value;
         PlayerCam.sensitivityX = MouseSensitivity;
         PlayerCam.sensitivityY = MouseSensitivity;
-        Debug.Log(PlayerPrefs.GetFloat("MouseSensitivity", 0.5f).ToString());
-
     }
     public void ChangeDifficulty()
     {
         //currently there is no difficulty implemented.
         Difficulty = sldrDifficulty.value;
-        Debug.Log(PlayerPrefs.GetFloat("Difficulty", 0.5f).ToString());
     }
     public void SaveChanges()
     {
