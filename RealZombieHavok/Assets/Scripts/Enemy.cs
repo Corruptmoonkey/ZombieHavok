@@ -60,10 +60,10 @@ public class Enemy : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, 2.5f); // Start attacking/Stop attacking
 
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position, 18f); // Detection (Start Chasing)
+        Gizmos.DrawWireSphere(transform.position, 100); // Detection (Start Chasing)
 
         Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position, 21f); // Stop Chasing
+        Gizmos.DrawWireSphere(transform.position, 101); // Stop Chasing
     }
 
 }
