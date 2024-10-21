@@ -9361,7 +9361,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!222 &1670873003316653231
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11417,6 +11417,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70fc9194066db764e8f709219c4cceae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  icon: {fileID: 0}
 --- !u!114 &5771836186300304723
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13011,6 +13012,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a5075421ff6fcf48a77e3257f07fc3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  walkSpeed: 5
+  runSpeed: 10
+  sprintKey: 304
+  orientation: {fileID: 5716627488947087973}
+  playerHeight: 2
+  groundDrag: 5
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 0
+  jumpForce: 10
+  jumpCooldown: 1
+  airMultiplier: 12
+  jumpKey: 32
 --- !u!114 &8694382885662912126
 MonoBehaviour:
   m_ObjectHideFlags: 0
