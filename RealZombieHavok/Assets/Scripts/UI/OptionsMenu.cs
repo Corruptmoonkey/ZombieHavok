@@ -1,3 +1,10 @@
+/*
+OptionsMenu 
+by Steven Pichelman
+10/20/2024
+this script handles any changes to the options, whether it is ingame in the pause menu or in the options menu from the main menu.
+*/
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,8 +18,6 @@ public class OptionsMenu : MonoBehaviour
     [SerializeField] Slider sldrMouseSensitivity;
     [SerializeField] Slider  sldrDifficulty;
     [SerializeField] PlayerCam PlayerCam;
-
-    //PlayerCam PlayerCam;
 
         public void Start()
     {
