@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 public class Enemy : MonoBehaviour
 {
-
+ 
     [SerializeField] private int HP = 100;
     private Animator animator;
     public ZombieHand zombieHand;
@@ -15,6 +15,7 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+    
         // Gets the animator and Nav agent components associated with the script's object
         animator = GetComponent<Animator>();
         navAgent = GetComponent<NavMeshAgent>();

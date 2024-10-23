@@ -32,6 +32,7 @@ public class ZombieSpawnController : MonoBehaviour
     public TextMeshProUGUI currentWaveUI;
 
     public List<Transform> spawnPoints;
+    public TextMeshProUGUI roundOverUI;
 
     private void Start()
     {
@@ -147,16 +148,24 @@ public class ZombieSpawnController : MonoBehaviour
 
     private IEnumerator WaveCooldown()
     {
+
         inCooldown = true;
+        if (currentWave != 10)
+        {
+            waveOverUI.gameObject.SetActive(true);
 
-        waveOverUI.gameObject.SetActive(true);
+            yield return new WaitForSeconds(waveCooldown);
+            inCooldown = false;
+            waveOverUI.gameObject.SetActive(false);
 
-        yield return new WaitForSeconds(waveCooldown);
-        inCooldown = false;
-        waveOverUI.gameObject.SetActive(false);
-
-        currentZombiesPerWave += 5; // Increase the number of zombies for the next wave
-        StartNextWave();
+            currentZombiesPerWave += 0; // Increase the number of zombies for the next wave
+            StartNextWave();
+        }
+        else
+        {
+            roundOverUI.gameObject.SetActive(true);
+            currentWaveUI.gameObject.SetActive(false);
+        }
     }
 
 
