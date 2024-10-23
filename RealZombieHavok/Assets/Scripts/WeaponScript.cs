@@ -19,11 +19,12 @@ public class WeaponScript : MonoBehaviour
     public int burstBulletsLeft;
     public float spreadIntensity;
     public GameObject muzzleEffect;
+   
     public float reloadTime;
     public int magazineSize, bulletsLeft;
     public bool isReloading;
 
-
+    private Animator animator;
 
     public int weaponDamage;
     public enum ShootingMode
@@ -48,6 +49,7 @@ public class WeaponScript : MonoBehaviour
         readyToShoot = true;
         burstBulletsLeft = bulletsPerBurst;
         bulletsLeft = magazineSize;
+        animator = GetComponent<Animator>();
     }
 
 
@@ -74,7 +76,7 @@ public class WeaponScript : MonoBehaviour
                 Reload();
             }
 
-            if (readyToShoot && isShooting && bulletsLeft > 0)
+            if (readyToShoot && isShooting && bulletsLeft > 0 && !isReloading)
             {
                 burstBulletsLeft = bulletsPerBurst;
                 FireWeapon();
@@ -93,6 +95,8 @@ public class WeaponScript : MonoBehaviour
     private void FireWeapon()
     {
         bulletsLeft--;
+
+        animator.SetTrigger("RECOIL");
 
         readyToShoot = false;
         Vector3 shootingDirection = CalculateDirectionAndSpread().normalized;
@@ -125,6 +129,7 @@ public class WeaponScript : MonoBehaviour
     private void Reload()
     {
         isReloading = true;
+        animator.SetTrigger("RELOAD");
         Invoke("ReloadCompleted", reloadTime);
     }
 
