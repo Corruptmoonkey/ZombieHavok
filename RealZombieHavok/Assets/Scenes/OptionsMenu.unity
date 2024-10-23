@@ -629,6 +629,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3563696365020696089, guid: 331dab3f61653a14b8380e97d9afa6ae, type: 3}
       propertyPath: m_Value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3563696365020696089, guid: 331dab3f61653a14b8380e97d9afa6ae, type: 3}
+      propertyPath: m_MaxValue
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3563696365020696089, guid: 331dab3f61653a14b8380e97d9afa6ae, type: 3}
+      propertyPath: m_MinValue
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3563696365020696089, guid: 331dab3f61653a14b8380e97d9afa6ae, type: 3}

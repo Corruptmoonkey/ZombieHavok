@@ -18,11 +18,12 @@ public class OptionsMenu : MonoBehaviour
     [SerializeField] Slider sldrMouseSensitivity;
     [SerializeField] Slider  sldrDifficulty;
     [SerializeField] PlayerCam PlayerCam;
+    [SerializeField] Player Player;
 
-        public void Start()
+    public void Start()
     {
         MouseSensitivity = PlayerPrefs.GetFloat("MouseSensitivity", 100f);
-        Difficulty = PlayerPrefs.GetFloat("Difficulty", 0.5f);
+        Difficulty = PlayerPrefs.GetFloat("Difficulty", 1f);
         PlayerCam.sensitivityX = MouseSensitivity;
         PlayerCam.sensitivityY = MouseSensitivity;
 
@@ -40,8 +41,10 @@ public class OptionsMenu : MonoBehaviour
     }
     public void ChangeDifficulty()
     {
-        //currently there is no difficulty implemented.
         Difficulty = sldrDifficulty.value;
+        Player.HP = (int)Mathf.RoundToInt(100 / Difficulty); //removes or adds health
+        Player.playerHealthUI.text = $"Health: {Player.HP}"; //update
+
     }
     public void SaveChanges()
     {

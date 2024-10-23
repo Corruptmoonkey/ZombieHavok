@@ -5,7 +5,7 @@ using UnityEngine.AI;
 public class Enemy : MonoBehaviour
 {
  
-    [SerializeField] private int HP = 100;
+    [SerializeField] public int HP = 100;
     private Animator animator;
     public ZombieHand zombieHand;
 
@@ -15,7 +15,8 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-    
+        //this code by Steven Pichelman. adjusts health for difficulty
+        HP = (int)Mathf.RoundToInt(HP * PlayerPrefs.GetFloat("Difficulty", 1f));
         // Gets the animator and Nav agent components associated with the script's object
         animator = GetComponent<Animator>();
         navAgent = GetComponent<NavMeshAgent>();

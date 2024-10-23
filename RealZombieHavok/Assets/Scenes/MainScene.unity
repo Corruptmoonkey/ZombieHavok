@@ -814,6 +814,7 @@ MonoBehaviour:
   magazineSize: 15
   bulletsLeft: 0
   isReloading: 0
+  isADS: 0
   weaponDamage: 100
   thisWeaponModel: 0
   currentShootingMode: 0
@@ -9854,6 +9855,7 @@ MonoBehaviour:
   sldrMouseSensitivity: {fileID: 4411256093352380651}
   sldrDifficulty: {fileID: 8068161900234484836}
   PlayerCam: {fileID: 963194229}
+  Player: {fileID: 8694382885662912126}
 --- !u!222 &2863747033778299765
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -12641,6 +12643,8 @@ MonoBehaviour:
   cooldownCounter: 0
   currentZombiesAlive: []
   zombiePrefab: {fileID: 4469995143124509620, guid: b0266314ab05edf4ca47a3013b0fb662, type: 3}
+  bossPrefab: {fileID: 0}
+  bossSpawnPoint: {fileID: 0}
   waveOverUI: {fileID: 698011316}
   cooldownCounterUI: {fileID: 787239593}
   currentWaveUI: {fileID: 1236581309}
@@ -12649,6 +12653,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  roundOverUI: {fileID: 0}
 --- !u!114 &7825637808384507972
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12834,10 +12839,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 2707542915813515372}
   m_HandleRect: {fileID: 6649573932665966858}
   m_Direction: 0
-  m_MinValue: 0
-  m_MaxValue: 1
+  m_MinValue: 0.5
+  m_MaxValue: 2
   m_WholeNumbers: 0
-  m_Value: 0.5
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
