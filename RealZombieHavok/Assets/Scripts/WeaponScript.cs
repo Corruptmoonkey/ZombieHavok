@@ -36,7 +36,7 @@ public class WeaponScript : MonoBehaviour
     public enum WeaponModel
     { 
         M1911,
-        SAW
+        AK47
     }
 
     public WeaponModel thisWeaponModel;
@@ -102,7 +102,7 @@ public class WeaponScript : MonoBehaviour
         Bullet bul = bullet.GetComponent<Bullet>();
         bul.bulletDamage = weaponDamage;
 
-        bullet.transform.forward = -shootingDirection;
+        bullet.transform.forward = shootingDirection;
 
         if(allowReset)
 {
@@ -117,7 +117,7 @@ public class WeaponScript : MonoBehaviour
         }
 
 
-        bullet.GetComponent<Rigidbody>().AddForce(bulletSpawn.forward.normalized * bulletVelocity, ForceMode.Impulse);
+        bullet.GetComponent<Rigidbody>().AddForce(shootingDirection * bulletVelocity, ForceMode.Impulse);
 
         StartCoroutine(DestroyBulletAfterTime(bullet, bulletPrefabLifeTime));
     }

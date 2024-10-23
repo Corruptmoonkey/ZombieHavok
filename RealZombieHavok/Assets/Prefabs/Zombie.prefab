@@ -1518,6 +1518,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HP: 100
+  zombieHand: {fileID: 7036425890599900530}
   isDead: 0
 --- !u!114 &3761221232540753792
 MonoBehaviour:

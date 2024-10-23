@@ -7,7 +7,7 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] private int HP = 100;
     private Animator animator;
-
+    public ZombieHand zombieHand;
 
     private NavMeshAgent navAgent;
     public bool isDead = false;
@@ -40,12 +40,21 @@ public class Enemy : MonoBehaviour
                 animator.SetTrigger("DIE2");
             }
             isDead = true;
+            zombieHand.gameObject.SetActive(false);
+            StartCoroutine(DestroyAfterDelay(8f)); // After 8 seconds the enemy will be destroyed
+
         }
 
         else
         {
            animator.SetTrigger("DAMAGE");
         }
+    }
+
+    private IEnumerator DestroyAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        Destroy(gameObject);
     }
 
     public int getHP()
