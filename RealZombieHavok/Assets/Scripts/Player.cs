@@ -25,7 +25,7 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(int damageAmount)
     {
-        HP -= damageAmount;
+        HP -= Mathf.RoundToInt(damageAmount * PlayerPrefs.GetFloat("Difficulty", 1f));
         if (HP <= 0)
         {
             print("Player Dead");

@@ -19,6 +19,7 @@ public class OptionsMenu : MonoBehaviour
     [SerializeField] Slider  sldrDifficulty;
     [SerializeField] PlayerCam PlayerCam;
     [SerializeField] Player Player;
+    float hpMissing;
 
     public void Start()
     {
@@ -32,6 +33,10 @@ public class OptionsMenu : MonoBehaviour
 
         sldrDifficulty.value = Difficulty;
         sldrDifficulty.onValueChanged.AddListener(delegate { ChangeDifficulty(); });
+
+        //Player.HP = Player.HP / Difficulty; //removes or adds health
+        Player.playerHealthUI.text = $"Health: {Player.HP}"; //update
+
     }
     public void ChangeMouseSensitivity()
     {
@@ -41,10 +46,8 @@ public class OptionsMenu : MonoBehaviour
     }
     public void ChangeDifficulty()
     {
+      //  this is passed to modify player and enemy damage.
         Difficulty = sldrDifficulty.value;
-        Player.HP = (int)Mathf.RoundToInt(100 / Difficulty); //removes or adds health
-        Player.playerHealthUI.text = $"Health: {Player.HP}"; //update
-
     }
     public void SaveChanges()
     {

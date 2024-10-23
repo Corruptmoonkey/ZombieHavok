@@ -27,7 +27,7 @@ public class Enemy : MonoBehaviour
     public  void TakeDamage(int damageAmount)
     {
 
-        HP -= damageAmount;
+        HP -= Mathf.RoundToInt(damageAmount / PlayerPrefs.GetFloat("Difficulty", 1f)); ;
 
         if(HP <= 0)
         {
