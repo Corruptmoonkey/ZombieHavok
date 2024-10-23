@@ -26,6 +26,8 @@ public class WeaponScript : MonoBehaviour
 
     private Animator animator;
 
+    public bool isADS;
+
     public int weaponDamage;
     public enum ShootingMode
     {
@@ -57,6 +59,16 @@ public class WeaponScript : MonoBehaviour
     {
         if (isActiveWeapon)
         {
+            if (Input.GetMouseButtonDown(1))
+            {
+                animator.SetTrigger("enterADS");
+                isADS = true;
+            }
+           if(Input.GetMouseButtonUp(1))
+            {
+                animator.SetTrigger("exitADS");
+                isADS = false;
+            }
             if (currentShootingMode == ShootingMode.Auto)
             {
                 isShooting = Input.GetKey(KeyCode.Mouse0);
@@ -96,8 +108,10 @@ public class WeaponScript : MonoBehaviour
     {
         bulletsLeft--;
 
-        animator.SetTrigger("RECOIL");
-
+        if (!isADS)
+        {
+            animator.SetTrigger("RECOIL");
+        }
         readyToShoot = false;
         Vector3 shootingDirection = CalculateDirectionAndSpread().normalized;
 
