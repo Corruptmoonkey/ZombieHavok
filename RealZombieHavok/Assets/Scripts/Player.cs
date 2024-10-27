@@ -2,10 +2,13 @@ using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
+using UnityEngine.Rendering.Universal;
 
 public class Player : MonoBehaviour
 {
     public int HP = 100;
+    public int MaxHP = 100;
    
     public bool isDead;
 
@@ -15,16 +18,18 @@ public class Player : MonoBehaviour
     public TextMeshProUGUI playerHealthUI;
 
     public GameObject gameOverUI;
-
+    public Slider SliderPlayerHealth;
 
     public void Start()
     {
-        playerHealthUI.text = $"Health: {HP}";
+        //HP is now displayed by this Slider by Steven Pichelman
+        SliderPlayerHealth.value = HP;
     }
 
 
     public void TakeDamage(int damageAmount)
     {
+        // HP difficulty modifier by Steven Pichelman
         HP -= Mathf.RoundToInt(damageAmount * PlayerPrefs.GetFloat("Difficulty", 1f));
         if (HP <= 0)
         {
@@ -36,7 +41,8 @@ public class Player : MonoBehaviour
         else
         {
             print("Player Hit");
-            playerHealthUI.text = $"Health: {HP}";
+           // playerHealthUI.text = $"Health: {HP}";
+            SliderPlayerHealth.value = HP;
 
 
         }
@@ -53,11 +59,27 @@ public class Player : MonoBehaviour
 
 
         }
+        //Health drop functionality by Steven Pichelman
+        else if (other.CompareTag("HealthDrop"))
+        {
+            if (HP == MaxHP) //do not consume drop if full health
+            {
+                return;
+            }
+            HP += other.GetComponent<HealthDrop>().HealthAmount;
+            if (HP > MaxHP)
+            {
+                HP = MaxHP;
+            } 
+            Debug.Log($"Healed to {HP} HP");
+            Destroy(other.gameObject);
+        }
     }
 
     private void PlayerDead()
     {
-        GetComponent<PlayerMovement>().enabled = false; // Movement is disabled
+        SliderPlayerHealth.value = 0; 
+       GetComponent<PlayerMovement>().enabled = false; // Movement is disabled
         cameraControlScript.enabled = false; // Camera controls are disabled
         cameraAnimator.enabled = true;
         playerHealthUI.gameObject.SetActive(false);
