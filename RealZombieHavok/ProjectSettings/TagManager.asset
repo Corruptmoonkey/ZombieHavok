@@ -12,6 +12,7 @@ TagManager:
   - Enemy
   - Waypoints
   - ZombieHand
+  - HealthDrop
   layers:
   - Default
   - TransparentFX
