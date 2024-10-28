@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour
 {
  
     [SerializeField] public int HP = 100;
+    public int MaxHP;
     private Animator animator;
     public ZombieHand zombieHand;
 
@@ -18,13 +19,16 @@ public class Enemy : MonoBehaviour
         // Gets the animator and Nav agent components associated with the script's object
         animator = GetComponent<Animator>();
         navAgent = GetComponent<NavMeshAgent>();
+
+        //added tracking MaxHP for healthbar script by Steven Pichelman
+        MaxHP = HP; 
     }
 
 
 
     public  void TakeDamage(int damageAmount)
     {
-
+        // difficulty damage modifier by Steven Pichelman
         HP -= Mathf.RoundToInt(damageAmount / PlayerPrefs.GetFloat("Difficulty", 1f)); ;
 
         if(HP <= 0)
