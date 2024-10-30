@@ -41,7 +41,6 @@ public class Player : MonoBehaviour
         else
         {
             print("Player Hit");
-           // playerHealthUI.text = $"Health: {HP}";
             SliderPlayerHealth.value = HP;
 
 

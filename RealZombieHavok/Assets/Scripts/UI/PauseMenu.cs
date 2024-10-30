@@ -22,6 +22,7 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] Image _OptionsMenu;
     [SerializeField] GameObject Player;
     OptionsMenu OptionsMenu;
+    [SerializeField] TargetHealthbar TargetHealthbar;
     List<Canvas> OtherCanvases = new List<Canvas>();
     public void Start()
     {
@@ -69,7 +70,7 @@ public class PauseMenu : MonoBehaviour
         // unlocks cursor to allow it to select.
         _PauseMenu.gameObject.SetActive(!IsPaused);
         _OptionsMenu.gameObject.SetActive(false);
-        Cursor.lockState = IsPaused ? CursorLockMode.Locked : CursorLockMode.Confined;
+        Cursor.lockState = IsPaused ? CursorLockMode.Locked : CursorLockMode.None;
         Cursor.visible = !IsPaused;
         //disable weapon to prevent it from shooting with mouse clicks.
         Player.GetComponentInChildren<WeaponScript>().isActiveWeapon = IsPaused;
@@ -92,5 +93,10 @@ public class PauseMenu : MonoBehaviour
             }
         }
         return OtherCanvases;
+    }
+    private void OnRectTransformDimensionsChange()
+    {
+        //update TargetHealthbar location.
+        TargetHealthbar.ScreenSizeChanged();
     }
 }
