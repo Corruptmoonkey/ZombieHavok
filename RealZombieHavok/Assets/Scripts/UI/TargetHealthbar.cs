@@ -50,9 +50,11 @@ public class TargetHealthbar : MonoBehaviour
                     {
                          //moves healthbar into view
                          SliderTargetHealth.gameObject.transform.position = new Vector2(SliderTargetHealth.gameObject.transform.position.x, TargetHealthbarHeight);
+
+                         SliderTargetHealth.maxValue = Enemy.MaxHP;
+                        //keep in mind targetMinHealth image shows min 1% health to be more visible; this is easier than done through code.
+                         SliderTargetHealth.value = Enemy.HP;
                     }
-                //this is a ratio:       32/64 is 50%. also shows min of 1/64th health to be more visible.
-                SliderTargetHealth.value = Math.Max(Enemy.HP * 64 / Enemy.MaxHP, 1);
             }
             else
             {
