@@ -19,6 +19,7 @@ public class Bullet : MonoBehaviour
             print("hit " + objectWeHit.gameObject.name + " !");
 
             Destroy(gameObject); // Destroys  buillet
+            CreateBulletImpactEffect(objectWeHit);
         }
 
         if(objectWeHit.gameObject.CompareTag("Wall"))
@@ -26,6 +27,7 @@ public class Bullet : MonoBehaviour
             print("hit a wall");
 
             Destroy(gameObject);// Destroys  buillet
+            CreateBulletImpactEffect(objectWeHit);
         }
 
         if (objectWeHit.gameObject.CompareTag("Enemy"))
@@ -54,5 +56,14 @@ public class Bullet : MonoBehaviour
 
         bloodSprayPrefab.transform.SetParent(objectWeHit.gameObject.transform);
         Destroy(gameObject);
+    }
+
+    void CreateBulletImpactEffect(Collision objectWeHit)
+    {
+        ContactPoint contact = objectWeHit.contacts[0];
+
+        GameObject hole = Instantiate(GlobalReferences.Instance.bulletImpactEffectPrefab, contact.point, Quaternion.LookRotation(contact.normal));
+
+        hole.transform.SetParent(objectWeHit.gameObject.transform);
     }
 }

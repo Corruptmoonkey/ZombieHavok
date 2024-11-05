@@ -76,6 +76,7 @@ public class WeaponScript : MonoBehaviour
             else if (currentShootingMode == ShootingMode.Single || currentShootingMode == ShootingMode.Burst)
             {
                 isShooting = Input.GetKeyDown(KeyCode.Mouse0);
+
             }
 
             if (Input.GetKeyDown(KeyCode.R) && bulletsLeft < magazineSize && isReloading == false)
@@ -112,6 +113,8 @@ public class WeaponScript : MonoBehaviour
         {
             animator.SetTrigger("RECOIL");
         }
+        SoundManager.Instance.PlayShootingSound(thisWeaponModel);
+
         readyToShoot = false;
         Vector3 shootingDirection = CalculateDirectionAndSpread().normalized;
 

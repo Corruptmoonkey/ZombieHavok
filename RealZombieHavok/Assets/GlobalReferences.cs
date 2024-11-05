@@ -9,7 +9,10 @@ public class GlobalReferences : MonoBehaviour
 {
     public static GlobalReferences Instance { get; set; }
     public GameObject bloodSprayEffect;
-    
+    public GameObject bulletImpactEffectPrefab;
+    public GameObject grenadeExplosionEffect;
+    public GameObject smokeGrenadeEffect;
+
     private void Awake()
     {
 
