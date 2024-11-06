@@ -24,11 +24,18 @@ public class WeaponScript : MonoBehaviour
     public int magazineSize, bulletsLeft;
     public bool isReloading;
 
+
+    public Vector3 spawnPosition;
+    public Vector3 spawnRotation;
+    public Vector3 spawnSize;
+
     private Animator animator;
 
     public bool isADS;
 
     public int weaponDamage;
+
+
     public enum ShootingMode
     {
         Single,
@@ -69,6 +76,13 @@ public class WeaponScript : MonoBehaviour
                 animator.SetTrigger("exitADS");
                 isADS = false;
             }
+
+            // Empty Magazine sound
+            if ((bulletsLeft <= 0 || isReloading) && isShooting)
+            {
+                SoundManager.Instance.emptyMagazineSound.Play();
+            }
+
             if (currentShootingMode == ShootingMode.Auto)
             {
                 isShooting = Input.GetKey(KeyCode.Mouse0);
@@ -108,6 +122,7 @@ public class WeaponScript : MonoBehaviour
     private void FireWeapon()
     {
         bulletsLeft--;
+        muzzleEffect.GetComponent<ParticleSystem>().Play();
 
         if (!isADS)
         {
@@ -146,6 +161,7 @@ public class WeaponScript : MonoBehaviour
     private void Reload()
     {
         isReloading = true;
+        SoundManager.Instance.PlayReloadSound(thisWeaponModel);
         animator.SetTrigger("RELOAD");
         Invoke("ReloadCompleted", reloadTime);
     }
