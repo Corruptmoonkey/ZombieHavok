@@ -68,7 +68,7 @@ public class Weapons : MonoBehaviour
     {
         muzzleEffect.GetComponent<ParticleSystem>().Play();
         animator.SetTrigger("RECOIL");
-        SoundManager.Instance.PlayShootingSound.Play();
+        //SoundManager.Instance.PlayShootingSound.Play();
 
         readyToShoot = false;
 
