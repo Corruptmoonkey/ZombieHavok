@@ -29,7 +29,7 @@ public class WeaponScript : MonoBehaviour
     public Vector3 spawnRotation;
     public Vector3 spawnSize;
 
-    public Animator animator;
+    private Animator animator;
 
     public bool isADS;
 
@@ -59,7 +59,6 @@ public class WeaponScript : MonoBehaviour
         burstBulletsLeft = bulletsPerBurst;
         bulletsLeft = magazineSize;
         animator = GetComponent<Animator>();
-        isActiveWeapon = false;
     }
 
 
