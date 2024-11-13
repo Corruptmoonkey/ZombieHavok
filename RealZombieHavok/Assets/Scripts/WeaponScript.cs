@@ -29,7 +29,7 @@ public class WeaponScript : MonoBehaviour
     public Vector3 spawnRotation;
     public Vector3 spawnSize;
 
-    private Animator animator;
+    public Animator animator;
 
     public bool isADS;
 

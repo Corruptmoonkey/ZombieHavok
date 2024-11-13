@@ -4,8 +4,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static Weapon;
 using static WeaponScript;
+
 
 public class SoundManager : MonoBehaviour
 {
