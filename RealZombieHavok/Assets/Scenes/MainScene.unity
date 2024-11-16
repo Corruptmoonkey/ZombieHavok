@@ -13687,7 +13687,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70fc9194066db764e8f709219c4cceae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: 0}
 --- !u!114 &5771836186300304723
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15382,7 +15381,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4817671676198991900}
   - component: {fileID: 765885120562191131}
-  - component: {fileID: 8694382885662912125}
+  - component: {fileID: 8694382885662912128}
   - component: {fileID: 8694382885662912126}
   - component: {fileID: 8694382885662912127}
   m_Layer: 0
@@ -15392,31 +15391,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &8694382885662912125
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8694382885662912124}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a5075421ff6fcf48a77e3257f07fc3c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  walkSpeed: 10
-  runSpeed: 20
-  sprintKey: 304
-  orientation: {fileID: 5716627488947087973}
-  playerHeight: 2
-  groundDrag: 12
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 8
-  jumpForce: 12
-  jumpCooldown: 0.25
-  airMultiplier: 0.4
-  jumpKey: 32
 --- !u!114 &8694382885662912126
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15429,7 +15403,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 304f720b4a8141a43ad6303b8d5d0df2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 100
   MaxHP: 100
   isDead: 0
   cameraControlScript: {fileID: 963194229}
@@ -15451,6 +15424,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fadeImage: {fileID: 1794897787}
   fadeDuration: 3
+--- !u!114 &8694382885662912128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8694382885662912124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a5075421ff6fcf48a77e3257f07fc3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkSpeed: 10
+  runSpeed: 15
+  sprintKey: 304
+  orientation: {fileID: 5716627488947087973}
+  playerHeight: 3.2
+  groundDrag: 5
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  grounded: 0
+  jumpForce: 8
+  jumpCooldown: 0.3
+  airMultiplier: 0.2
+  jumpKey: 32
 --- !u!1 &8694692933728098205
 GameObject:
   m_ObjectHideFlags: 0

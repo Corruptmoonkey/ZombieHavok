@@ -7,7 +7,7 @@ using UnityEngine.Rendering.Universal;
 
 public class Player : MonoBehaviour
 {
-    public int HP = 100;
+    public static int HP = 100;
     public int MaxHP = 100;
    
     public bool isDead;
@@ -69,7 +69,8 @@ public class Player : MonoBehaviour
             if (HP > MaxHP)
             {
                 HP = MaxHP;
-            } 
+            }
+            SliderPlayerHealth.value = HP;
             Debug.Log($"Healed to {HP} HP");
             Destroy(other.gameObject);
         }

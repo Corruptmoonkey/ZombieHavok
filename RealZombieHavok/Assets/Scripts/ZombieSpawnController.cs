@@ -13,7 +13,7 @@ public class ZombieSpawnController : MonoBehaviour
 
     public float spawnDelay = 0.5f; // Delay between each zombie spawn
 
-    public int currentWave = 0;
+    public static int currentWave = 0;
     public float waveCooldown = 10.0f; // Time between when the wave ends and the new wave starts
 
     public bool inCooldown;
@@ -34,6 +34,8 @@ public class ZombieSpawnController : MonoBehaviour
     public List<Transform> spawnPoints;
     public TextMeshProUGUI roundOverUI;
 
+    public SpawnDrop SpawnDrop;
+
     private void Start()
     {
         currentZombiesPerWave = initialZombiesPerWave;
@@ -42,6 +44,7 @@ public class ZombieSpawnController : MonoBehaviour
 
     private void StartNextWave()
     {
+        SpawnDrop.SpawnRandom();
         if (currentWave < 10)
         {
             currentZombiesAlive.Clear();
