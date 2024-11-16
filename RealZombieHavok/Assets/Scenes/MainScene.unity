@@ -11624,6 +11624,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2166138535470538507}
   - component: {fileID: 7797430981985807872}
+  - component: {fileID: 7797430981985807873}
   m_Layer: 0
   m_Name: ZombieSpawner
   m_TagString: Untagged
@@ -15000,7 +15001,6 @@ MonoBehaviour:
   initialZombiesPerWave: 5
   currentZombiesPerWave: 0
   spawnDelay: 0.5
-  currentWave: 9
   waveCooldown: 10
   inCooldown: 0
   cooldownCounter: 0
@@ -15017,6 +15017,32 @@ MonoBehaviour:
   - {fileID: 1278581461}
   - {fileID: 989057690}
   roundOverUI: {fileID: 1107543044}
+  SpawnDrop: {fileID: 7797430981985807873}
+--- !u!114 &7797430981985807873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1503507175880991680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dcc5b5f8f1e98b4cb855bb7c5017d22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AmmoDrops: []
+  HealthDrops:
+  - {fileID: 4151887655136540252, guid: ec8d91c615ff7d34fbe7ec94b931f579, type: 3}
+  WeaponDrops: []
+  DropsSpawned: []
+  SpawnLocations:
+  - {fileID: 5541191814826383333}
+  - {fileID: 842772862}
+  - {fileID: 1278581461}
+  - {fileID: 989057690}
+  HealthDropsToSpawn: 3
+  AmmoDropsToSpawn: 3
+  WeaponDropsToSpawn: 3
 --- !u!222 &7799730982595391590
 CanvasRenderer:
   m_ObjectHideFlags: 0
