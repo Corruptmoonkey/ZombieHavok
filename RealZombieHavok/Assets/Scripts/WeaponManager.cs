@@ -1,56 +1,115 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Windows;
+
 
 public class WeaponManager : MonoBehaviour
 {
-    public GameObject[] weapons;  // Array to store all weapon GameObjects
-    private int currentWeaponIndex = 0;  // Track the currently active weapon
+    public static WeaponManager Instance { get; set; }
+    public List<GameObject> weaponSlots;
+    public GameObject activeWeaponSlot;
 
-    void Start()
+    private void Awake()
     {
-        ActivateWeapon(currentWeaponIndex);  // Activate the first weapon by default
-    }
 
-    void Update()
-    {
-        if (Input.GetAxis("Mouse ScrollWheel") > 0f)  // Scroll up
+
         {
-            SwitchWeapon(1);
-        }
-        else if (Input.GetAxis("Mouse ScrollWheel") < 0f)  // Scroll down
-        {
-            SwitchWeapon(-1);
-        }
-
-        // Optional: Use number keys to switch weapons
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-            ActivateWeapon(0);  // Switch to weapon 1
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-            ActivateWeapon(1);  // Switch to weapon 2
-    }
-
-    void SwitchWeapon(int direction)
-    {
-        // Deactivate the current weapon
-        weapons[currentWeaponIndex].SetActive(false);
-
-        // Calculate the next weapon index
-        currentWeaponIndex = (currentWeaponIndex + direction + weapons.Length) % weapons.Length;
-
-        // Activate the new weapon
-        ActivateWeapon(currentWeaponIndex);
-    }
-
-    void ActivateWeapon(int index)
-    {
-        // Deactivate all weapons
-        for (int i = 0; i < weapons.Length; i++)
-        {
-            weapons[i].SetActive(false);
+            if (Instance != null && Instance != this)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                Instance = this;
+            }
         }
 
-        // Activate the selected weapon
-        weapons[index].SetActive(true);
     }
+
+    private void Start()
+    {
+        activeWeaponSlot = weaponSlots[0];
+    }
+
+    private void Update()
+    {
+        foreach (GameObject weaponSlot in weaponSlots)
+        {
+            if (weaponSlot == activeWeaponSlot)
+            {
+                weaponSlot.SetActive(true);
+            }
+            else
+            {
+                weaponSlot.SetActive(false);
+            }
+        }
+
+        if (UnityEngine.Input.GetAxisRaw("Mouse ScrollWheel") > 0f || UnityEngine.Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            SwitchActiveSlot(1);
+
+        }
+        if (UnityEngine.Input.GetAxisRaw("Mouse ScrollWheel") < 0f || UnityEngine.Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            SwitchActiveSlot(0);
+        }
+
+    }
+
+
+    public void PickUpWeapon(GameObject pickedUpWeapon)
+    {
+        AddWeaponIntoActiveSlot(pickedUpWeapon);
+
+
+    }
+
+    private void AddWeaponIntoActiveSlot(GameObject pickedUpWeapon)
+    {
+        DropCurrentWeapon(pickedUpWeapon);
+        pickedUpWeapon.transform.SetParent(activeWeaponSlot.transform, false);
+
+        WeaponScript weapon = pickedUpWeapon.GetComponent<WeaponScript>();
+        pickedUpWeapon.transform.localPosition = new Vector3(weapon.spawnPosition.x, weapon.spawnPosition.y, weapon.spawnPosition.z);
+        pickedUpWeapon.transform.localRotation = Quaternion.Euler(weapon.spawnRotation.x, weapon.spawnRotation.y, weapon.spawnRotation.z);
+        pickedUpWeapon.transform.localScale = new Vector3(weapon.spawnSize.x, weapon.spawnSize.y, weapon.spawnSize.z);
+        weapon.isActiveWeapon = true;
+        weapon.animator.enabled = true;
+    }
+
+    private void DropCurrentWeapon(GameObject pickedUpWeapon)
+    {
+        if (activeWeaponSlot.transform.childCount > 0) // If the active weapon slot has a weapon already attached
+        {
+
+            var weaponToDrop = activeWeaponSlot.transform.GetChild(0).gameObject; // Saves current weapon in slot to a variable
+            weaponToDrop.GetComponent<WeaponScript>().isActiveWeapon = false; // Disables it
+            weaponToDrop.GetComponent<WeaponScript>().animator.enabled = false;
+            weaponToDrop.transform.SetParent(pickedUpWeapon.transform.parent); // Sets the parent of the wweapon as the same weapon we disabled 
+            weaponToDrop.transform.localPosition = pickedUpWeapon.transform.localPosition; // Sets the parent to the same position
+            weaponToDrop.transform.localRotation = pickedUpWeapon.transform.localRotation; // Sets the parent to the same rotation
+        }
+    }
+
+    public void SwitchActiveSlot(int slotNumber)
+    {
+        if (activeWeaponSlot.transform.childCount > 0)
+        {
+            WeaponScript currentWeapon = activeWeaponSlot.transform.GetChild(0).GetComponent<WeaponScript>();
+            currentWeapon.isActiveWeapon = false;
+        }
+
+        activeWeaponSlot = weaponSlots[slotNumber];
+
+        if (activeWeaponSlot.transform.childCount > 0)
+        {
+            WeaponScript newWeapon = activeWeaponSlot.transform.GetChild(0).GetComponent<WeaponScript>();
+            newWeapon.isActiveWeapon = true;
+        }
+    }
+
+ 
 }
