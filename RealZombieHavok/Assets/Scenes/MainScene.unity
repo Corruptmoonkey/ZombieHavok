@@ -11776,13 +11776,14 @@ GameObject:
   m_Component:
   - component: {fileID: 2166138535470538507}
   - component: {fileID: 7797430981985807872}
+  - component: {fileID: 7797430981985807873}
   m_Layer: 0
   m_Name: ZombieSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!222 &1670873003316653231
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -14980,7 +14981,6 @@ MonoBehaviour:
   initialZombiesPerWave: 5
   currentZombiesPerWave: 0
   spawnDelay: 0.5
-  currentWave: 9
   waveCooldown: 10
   inCooldown: 0
   cooldownCounter: 0
@@ -14997,6 +14997,37 @@ MonoBehaviour:
   - {fileID: 1278581461}
   - {fileID: 989057690}
   roundOverUI: {fileID: 1107543044}
+  SpawnDrop: {fileID: 7797430981985807873}
+--- !u!114 &7797430981985807873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1503507175880991680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dcc5b5f8f1e98b4cb855bb7c5017d22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AmmoDrops:
+  - {fileID: 100000, guid: d79e2469a1f496d4fb077a4c671068ba, type: 3}
+  HealthDrops:
+  - {fileID: 100000, guid: 04ef4e5efdfaf2b4e9e7cebfab9b823b, type: 3}
+  WeaponDrops:
+  - {fileID: 3815781811904718931, guid: a938335408aa9fc4296558594e221784, type: 3}
+  - {fileID: 276258730752048625, guid: 98396c67336230148aef4d3dfd9fb074, type: 3}
+  AmmoDropsSpawned: []
+  HealthDropsSpawned: []
+  WeaponDropsSpawned: []
+  SpawnLocations:
+  - {fileID: 5541191814826383333}
+  - {fileID: 842772862}
+  - {fileID: 1278581461}
+  - {fileID: 989057690}
+  HealthDropsToSpawn: 3
+  AmmoDropsToSpawn: 3
+  WeaponDropsToSpawn: 3
 --- !u!222 &7799730982595391590
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -15365,11 +15396,12 @@ MonoBehaviour:
   runSpeed: 20
   sprintKey: 304
   orientation: {fileID: 5716627488947087973}
-  playerHeight: 2
+  playerHeight: 3.2
   groundDrag: 12
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 9
+  grounded: 1
   jumpForce: 12
   jumpCooldown: 0.25
   airMultiplier: 0.4
@@ -15386,7 +15418,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 304f720b4a8141a43ad6303b8d5d0df2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 100
   MaxHP: 100
   isDead: 0
   cameraControlScript: {fileID: 963194229}
