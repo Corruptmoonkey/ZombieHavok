@@ -34,14 +34,35 @@ public class InteractionManager : MonoBehaviour
             GameObject objectHitByRaycast = hit.transform.gameObject;
             if (objectHitByRaycast.GetComponent<WeaponScript>() && objectHitByRaycast.GetComponent<WeaponScript>().isActiveWeapon == false)
             {
+                if (hoveredWeapon)
+                {
+                    hoveredWeapon.GetComponent<Outline>().enabled = false;
+                }
                 print("Press F to equip");
                 hoveredWeapon = objectHitByRaycast.gameObject.GetComponent<WeaponScript>();
-              
+                hoveredWeapon.GetComponent<Outline>().enabled = true;
                 if (Input.GetKeyDown(KeyCode.F))
                 {
                     WeaponManager.Instance.PickUpWeapon(objectHitByRaycast.gameObject);
                 }
-           
+            }
+            else
+            {
+                if (hoveredWeapon)
+                {
+                    hoveredWeapon.GetComponent<Outline>().enabled = false;
+                }
+
+
+            }
+
+        }
+
+        else
+        {
+            if (hoveredWeapon)
+            {
+                hoveredWeapon.GetComponent<Outline>().enabled = false;
             }
 
         }
