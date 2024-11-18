@@ -7769,6 +7769,11 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!4 &1338434678 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7165083842084454309, guid: a938335408aa9fc4296558594e221784, type: 3}
+  m_PrefabInstance: {fileID: 7393067953209913036}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1345697224
 GameObject:
   m_ObjectHideFlags: 0
@@ -8322,7 +8327,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1338434678}
   m_Father: {fileID: 1271986153}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1408530023
@@ -16942,7 +16948,6 @@ SceneRoots:
   - {fileID: 2166138535470538507}
   - {fileID: 88378610}
   - {fileID: 1297799457}
-  - {fileID: 7393067953209913036}
   - {fileID: 7294517573428965057}
   - {fileID: 1229971359}
   - {fileID: 1884257061}
