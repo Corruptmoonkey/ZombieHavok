@@ -55,8 +55,27 @@ public class InteractionManager : MonoBehaviour
 
 
             }
+            if (objectHitByRaycast.GetComponent<ItemBox>()){
+                print("Press F to open");
+                if (Input.GetKeyDown(KeyCode.F))
+                {
+                    // Get the Animator component and trigger the animation
+                    Animator itemBoxAnimator = objectHitByRaycast.GetComponent<Animator>();
+
+                    if (itemBoxAnimator != null)
+                    {
+                        itemBoxAnimator.SetTrigger("OPEN");
+                        print("Opening the item box...");
+                    }
+                    else
+                    {
+                        print("No Animator found on ItemBox!");
+                    }
+                }
+            }
 
         }
+
 
         else
         {
