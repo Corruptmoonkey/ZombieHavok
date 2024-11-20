@@ -48,7 +48,8 @@ public class WeaponScript : MonoBehaviour
     public enum WeaponModel
     { 
         M1911,
-        AK47
+        AK47,
+        M4_8
     }
 
     public WeaponModel thisWeaponModel;
