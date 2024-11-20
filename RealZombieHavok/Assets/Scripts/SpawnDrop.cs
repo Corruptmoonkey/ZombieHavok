@@ -37,7 +37,7 @@ public class SpawnDrop : MonoBehaviour
     //this is called by ZombieSpawner at beginning of each round. 
     public void SpawnRandom()
     {
-        if (Player.HP == 101) //give no health drops
+        if (Player.HP == 100) //give no health drops
         {
             //give drop amount instead to ammo and weapons
             for (int i = 0; i < HealthDropsCount; i+=2)
@@ -50,12 +50,12 @@ public class SpawnDrop : MonoBehaviour
         {
             PlaceDrop(HealthDrops, HealthDropsCount, ref HealthDropsSpawned);
         }
+
         // no more checks to do as ammo and weapons are not finalized
         PlaceDrop(AmmoDrops, AmmoDropsCount, ref AmmoDropsSpawned);
         PlaceDrop(WeaponDrops, WeaponDropsCount, ref WeaponDropsSpawned);
-        Debug.Log(HealthDropsSpawned.Count + " Health spawned");
-        Debug.Log(WeaponDropsSpawned.Count + " weapons spawned");
-        Debug.Log("Spawned random drops");
+
+        Debug.Log($"{AmmoDropsSpawned.Count} Ammo Spawned, {HealthDropsSpawned.Count}  Health Spawned, {WeaponDropsSpawned.Count} Weapons Spawned");
     }
 
     private void ResetDropCounts()
@@ -81,21 +81,29 @@ public class SpawnDrop : MonoBehaviour
             //set spawn rotation. this is different for each object. y axis is random.
             Vector3 PickedRotation;
             if (PickedDrop.TryGetComponent(out WeaponScript aWeaponScript))
-            { //pull rotation from weapon spawn script
+            { //pull default rotation from weapon spawn script
                 PickedRotation = new Vector3(aWeaponScript.spawnRotation.x, Random.Range(0, 350), aWeaponScript.spawnRotation.z + 90);
             }
             else
-            { //default rotation for all other drops
+            { //default rotation for all other drops (not weapons)
                 PickedRotation = new Vector3(0, Random.Range(0, 350),0);
+            }
+
+            //deternime the y axis offset for how tall the object is when spawned in. this would be easier if these objects had physics.
+            //offset from gound is equal to y axis of BoxCollider / 2 * scale of y axis; this is distance from center to ground.
+            float YAxis = 0.06f; //generally good default for weapons
+            if (PickedDrop.TryGetComponent(out BoxCollider aBoxCollider))
+            {
+                YAxis = aBoxCollider.size.y/2 * PickedDrop.transform.localScale.y; //this should be correct offset if center of BoxCollider is in center.
             }
 
             //add some variance around where the drop spawns. currently can overlap each other.
             Vector3 RandomLocation = SpawnLocations[Random.Range(0, SpawnLocations.Count)].position;
-            RandomLocation = new Vector3(RandomLocation.x + Random.Range(-3f, 3f), 0.3f, RandomLocation.z + Random.Range(-3f, 3f));
+            RandomLocation = new Vector3(RandomLocation.x + Random.Range(-3f, 3f), YAxis, RandomLocation.z + Random.Range(-3f, 3f));
 
             GameObject aDrop = Instantiate(PickedDrop, RandomLocation, Quaternion.Euler(PickedRotation));
 
-            // keep track of these drops
+            // keep track of these drops (per category)
             DropsSpawned.Add(aDrop);
         }
     }
