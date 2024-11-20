@@ -91,6 +91,7 @@ public class WeaponManager : MonoBehaviour
             weaponToDrop.transform.SetParent(pickedUpWeapon.transform.parent); // Sets the parent of the wweapon as the same weapon we disabled 
             weaponToDrop.transform.localPosition = pickedUpWeapon.transform.localPosition; // Sets the parent to the same position
             weaponToDrop.transform.localRotation = pickedUpWeapon.transform.localRotation; // Sets the parent to the same rotation
+            Destroy(weaponToDrop,0f);
         }
     }
 

@@ -11,7 +11,10 @@ public class InteractionManager : MonoBehaviour
 
     public WeaponScript hoveredWeapon = null;
     public ItemBox hoveredItemBox = null; // A variable to track the currently hovered ItemBox
-    private bool isItemBoxOpen = false; // A flag to track if the item box is already open
+    private bool isItemBoxOpen = false; // A flag to track if the item box is already
+                                       
+    public GameObject[] weaponPrefabs; // Array of weapon prefabs to spawn
+    public Transform weaponSpawnPoint; // The spawn point for weapons (this is set in the chest prefab)
     private void Awake()
     {
 
@@ -47,6 +50,8 @@ public class InteractionManager : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.F))
                 {
                     WeaponManager.Instance.PickUpWeapon(objectHitByRaycast.gameObject);
+                    hoveredWeapon.GetComponent<WeaponScript>().isPickedUp = true; // Mark the weapon as picked up
+
                 }
             }
             else
@@ -70,17 +75,27 @@ public class InteractionManager : MonoBehaviour
                 hoveredItemBox = objectHitByRaycast.GetComponent<ItemBox>(); // New: Update hoveredItemBox reference
                 hoveredItemBox.GetComponent<Outline>().enabled = true; // New: Enable outline for the currently hovered ItemBox
 
-                if (Input.GetKeyDown(KeyCode.F) && !isItemBoxOpen)
+                if (Input.GetKeyDown(KeyCode.F))
                 {
-                    // Get the Animator component and trigger the animation
-                    Animator itemBoxAnimator = objectHitByRaycast.GetComponent<Animator>();
+                    if (!isItemBoxOpen && PointsManager.Instance.points >= 1000)
+                    {
+                        // Get the Animator component and trigger the animation
+                        Animator itemBoxAnimator = objectHitByRaycast.GetComponent<Animator>();
 
-                   
-                    itemBoxAnimator.SetTrigger("OPEN");
-                    isItemBoxOpen = true;
-                    print("Opening the item box...");
-                    Coroutine coroutine = StartCoroutine(CloseBoxAfterDelay(itemBoxAnimator, 10));
 
+                        itemBoxAnimator.SetTrigger("OPEN");
+                        isItemBoxOpen = true;
+                        print("Opening the item box...");
+                        PointsManager.Instance.RemovePoints(1000);
+                        StartCoroutine(SpawnWeaponAfterDelay(1f, objectHitByRaycast.transform));
+                        StartCoroutine(CloseBoxAfterDelay(itemBoxAnimator, 10));
+                        
+                    }
+
+                    else
+                    {
+                        print("Not enough points");
+                    }
                 }
             }
             else
@@ -107,6 +122,43 @@ public class InteractionManager : MonoBehaviour
                 hoveredItemBox.GetComponent<Outline>().enabled = false;
                 hoveredItemBox = null; // New: Clear the hoveredItemBox reference
             }
+        }
+    }
+
+    private IEnumerator SpawnWeaponAfterDelay(float delay, Transform chestTransform)
+    {
+        yield return new WaitForSeconds(delay);
+
+        // Instantiate the weapon at the spawn point in the chest
+        if (weaponPrefabs.Length > 0 && weaponSpawnPoint != null)
+        {
+            // Pick a random weapon prefab to spawn (or you can specify which one)
+            int randomIndex = UnityEngine.Random.Range(0, weaponPrefabs.Length);
+            GameObject weapon = Instantiate(weaponPrefabs[randomIndex], weaponSpawnPoint.position, Quaternion.identity);
+            
+            print("Weapon spawned inside the chest!");
+         
+            StartCoroutine(DestroyWeaponBeforeClosing(weapon));
+        }
+        else
+        {
+            print("No weapons or spawn point defined!");
+        }
+    }
+    private IEnumerator DestroyWeaponBeforeClosing(GameObject weapon)
+    {
+        // Wait just before closing the box to destroy the weapon
+        yield return new WaitForSeconds(7f); // You can adjust this delay
+
+        // Destroy the weapon just before closing
+        if (weapon != null && !weapon.GetComponent<WeaponScript>().isPickedUp)
+        {
+            Destroy(weapon);
+          
+        }
+        else if (weapon != null)
+        {
+            print("Weapon was picked up, not destroyed.");
         }
     }
 
