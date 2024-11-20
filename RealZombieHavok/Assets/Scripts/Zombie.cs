@@ -15,4 +15,7 @@ public class Zombie : MonoBehaviour
     {
         zombieHand.damage = zombieDamage;
     }
+
+
+    
 }

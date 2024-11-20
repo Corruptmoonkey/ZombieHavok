@@ -13,6 +13,8 @@ public class Enemy : MonoBehaviour
     private NavMeshAgent navAgent;
     public bool isDead = false;
 
+    public int pointsForKill;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -45,6 +47,7 @@ public class Enemy : MonoBehaviour
             }
             isDead = true;
             zombieHand.gameObject.SetActive(false);
+            OnDeath();
             StartCoroutine(DestroyAfterDelay(8f)); // After 8 seconds the enemy will be destroyed
 
         }
@@ -61,10 +64,7 @@ public class Enemy : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public int getHP()
-    {
-        return HP;
-    }
+  
 
 
     public void OnDrawGizmos()
@@ -77,6 +77,12 @@ public class Enemy : MonoBehaviour
 
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, 101); // Stop Chasing
+    }
+
+    private void OnDeath()
+    {
+        // When the zombie is killed, add points to the player's score
+        PointsManager.Instance.AddPoints(pointsForKill);
     }
 
 }
