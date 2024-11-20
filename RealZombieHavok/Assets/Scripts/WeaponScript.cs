@@ -7,6 +7,8 @@ using UnityEngine;
 
 public class WeaponScript : MonoBehaviour
 {
+    public bool isPickedUp = false;
+
     public bool isActiveWeapon;
     public GameObject bulletPrefab;
     public Transform bulletSpawn;

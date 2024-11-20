@@ -34,7 +34,11 @@ public class PointsManager : MonoBehaviour
         points += pointsToAdd;  // Add points to the player's total
         UpdatePointsUI();  // Update the UI
     }
-
+    public void RemovePoints(int pointsToRemove)
+    {
+        points -= pointsToRemove;
+        UpdatePointsUI();
+    }
     private void UpdatePointsUI()
     {
         pointsText.text = "Points: " + points.ToString();  // Update the points text
