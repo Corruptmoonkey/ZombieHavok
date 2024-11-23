@@ -105,6 +105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee6b65fc2ba8a3e43af993982154ff4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPickedUp: 0
   isActiveWeapon: 0
   bulletPrefab: {fileID: 5584793377126984414, guid: de91d919878698348af7f182369d6332, type: 3}
   bulletSpawn: {fileID: 1900816944546030046}
@@ -165,7 +166,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
