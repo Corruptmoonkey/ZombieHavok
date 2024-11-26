@@ -5313,6 +5313,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPickedUp: 0
+  Name: Uzi
   isActiveWeapon: 0
   bulletPrefab: {fileID: 5584793377126984414, guid: de91d919878698348af7f182369d6332, type: 3}
   bulletSpawn: {fileID: 4580685612831551388}

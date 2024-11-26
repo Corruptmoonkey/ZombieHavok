@@ -78,6 +78,10 @@ public class WeaponManager : MonoBehaviour
         pickedUpWeapon.transform.localScale = new Vector3(weapon.spawnSize.x, weapon.spawnSize.y, weapon.spawnSize.z);
         weapon.isActiveWeapon = true;
         weapon.animator.enabled = true;
+
+        // give starting ammo when first picked up
+        AmmoManager.Instance.InitializeAmmo(weapon.Name, weapon.magazineSize);
+        AmmoManager.Instance.UpdateReserveText(weapon);
     }
 
     private void DropCurrentWeapon(GameObject pickedUpWeapon)
@@ -109,6 +113,7 @@ public class WeaponManager : MonoBehaviour
         {
             WeaponScript newWeapon = activeWeaponSlot.transform.GetChild(0).GetComponent<WeaponScript>();
             newWeapon.isActiveWeapon = true;
+            AmmoManager.Instance.UpdateReserveText(newWeapon);
         }
     }
 

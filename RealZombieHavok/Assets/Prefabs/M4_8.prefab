@@ -5221,6 +5221,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPickedUp: 0
+  Name: M4_8
   isActiveWeapon: 0
   bulletPrefab: {fileID: 5584793377126984414, guid: de91d919878698348af7f182369d6332, type: 3}
   bulletSpawn: {fileID: 2864971328603341516}
