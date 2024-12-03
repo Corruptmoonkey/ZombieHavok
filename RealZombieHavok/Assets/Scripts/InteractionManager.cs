@@ -1,35 +1,34 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-
 
 public class InteractionManager : MonoBehaviour
 {
     public static InteractionManager Instance { get; set; }
 
     public WeaponScript hoveredWeapon = null;
-    public ItemBox hoveredItemBox = null; // A variable to track the currently hovered ItemBox
-    private bool isItemBoxOpen = false; // A flag to track if the item box is already
-                                       
+    public ItemBox hoveredItemBox = null; // Track the currently hovered ItemBox
+    private bool isItemBoxOpen = false; // Track if the item box is already open
+
     public GameObject[] weaponPrefabs; // Array of weapon prefabs to spawn
-    public Transform weaponSpawnPoint; // The spawn point for weapons (this is set in the chest prefab)
+    public Transform weaponSpawnPoint; // Spawn point for weapons (set in the chest prefab)
+
+    private GameObject currentWeapon; // Track the weapon you're holding (if any)
+    private GameObject weaponInBox; // Track the weapon inside the box (if any)
+    private bool wasWeaponInBoxPickedUp = false; // Track if the weapon in the box was picked up
+
     private void Awake()
     {
-
+        if (Instance != null && Instance != this)
         {
-            if (Instance != null && Instance != this)
-            {
-                Destroy(gameObject);
-            }
-            else
-            {
-                Instance = this;
-            }
+            Destroy(gameObject);
         }
-
+        else
+        {
+            Instance = this;
+        }
     }
+
     private void Update()
     {
         Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
@@ -38,20 +37,21 @@ public class InteractionManager : MonoBehaviour
         if (Physics.Raycast(ray, out hit))
         {
             GameObject objectHitByRaycast = hit.transform.gameObject;
-            if (objectHitByRaycast.GetComponent<WeaponScript>() && objectHitByRaycast.GetComponent<WeaponScript>().isActiveWeapon == false)
+
+            // Handle Weapon interaction
+            if (objectHitByRaycast.GetComponent<WeaponScript>() && !objectHitByRaycast.GetComponent<WeaponScript>().isActiveWeapon)
             {
                 if (hoveredWeapon)
                 {
                     hoveredWeapon.GetComponent<Outline>().enabled = false;
                 }
-                print("Press F to equip");
-                hoveredWeapon = objectHitByRaycast.gameObject.GetComponent<WeaponScript>();
+
+                hoveredWeapon = objectHitByRaycast.GetComponent<WeaponScript>();
                 hoveredWeapon.GetComponent<Outline>().enabled = true;
+
                 if (Input.GetKeyDown(KeyCode.F))
                 {
-                    WeaponManager.Instance.PickUpWeapon(objectHitByRaycast.gameObject);
-                    hoveredWeapon.GetComponent<WeaponScript>().isPickedUp = true; // Mark the weapon as picked up
-
+                    PickUpWeapon();
                 }
             }
             else
@@ -59,69 +59,88 @@ public class InteractionManager : MonoBehaviour
                 if (hoveredWeapon)
                 {
                     hoveredWeapon.GetComponent<Outline>().enabled = false;
+                    hoveredWeapon = null;
                 }
-
-
             }
+
             // Handle ItemBox interaction
-            if (objectHitByRaycast.GetComponent<ItemBox>()) // New: Check if the raycast hits an ItemBox
+            if (objectHitByRaycast.GetComponent<ItemBox>())
             {
-                if (hoveredItemBox) // New: Disable outline for the previously hovered ItemBox
+                if (hoveredItemBox)
                 {
                     hoveredItemBox.GetComponent<Outline>().enabled = false;
                 }
 
-                print("Press F to open");
-                hoveredItemBox = objectHitByRaycast.GetComponent<ItemBox>(); // New: Update hoveredItemBox reference
-                hoveredItemBox.GetComponent<Outline>().enabled = true; // New: Enable outline for the currently hovered ItemBox
+                hoveredItemBox = objectHitByRaycast.GetComponent<ItemBox>();
+                hoveredItemBox.GetComponent<Outline>().enabled = true;
 
                 if (Input.GetKeyDown(KeyCode.F))
                 {
-                    if (!isItemBoxOpen && PointsManager.Instance.points >= 1000)
-                    {
-                        // Get the Animator component and trigger the animation
-                        Animator itemBoxAnimator = objectHitByRaycast.GetComponent<Animator>();
-
-
-                        itemBoxAnimator.SetTrigger("OPEN");
-                        isItemBoxOpen = true;
-                        print("Opening the item box...");
-                        PointsManager.Instance.RemovePoints(1000);
-                        StartCoroutine(SpawnWeaponAfterDelay(1f, objectHitByRaycast.transform));
-                        StartCoroutine(CloseBoxAfterDelay(itemBoxAnimator, 10));
-                        
-                    }
-
-                    else
-                    {
-                        print("Not enough points");
-                    }
+                    OpenItemBox(objectHitByRaycast);
                 }
             }
             else
             {
-                if (hoveredItemBox) // New: Reset the outline if the raycast moves away from the ItemBox
+                if (hoveredItemBox)
                 {
                     hoveredItemBox.GetComponent<Outline>().enabled = false;
-                    hoveredItemBox = null; // New: Clear the hoveredItemBox reference
+                    hoveredItemBox = null;
                 }
             }
         }
         else
         {
-            // Reset Weapon outline if raycast stops hitting
             if (hoveredWeapon)
             {
                 hoveredWeapon.GetComponent<Outline>().enabled = false;
                 hoveredWeapon = null;
             }
 
-            // Reset ItemBox outline if raycast stops hitting
-            if (hoveredItemBox) // New: Reset the outline and reference for the ItemBox
+            if (hoveredItemBox)
             {
                 hoveredItemBox.GetComponent<Outline>().enabled = false;
-                hoveredItemBox = null; // New: Clear the hoveredItemBox reference
+                hoveredItemBox = null;
             }
+        }
+    }
+
+    private void PickUpWeapon()
+    {
+        if (hoveredWeapon == null) return;
+
+        WeaponManager.Instance.PickUpWeapon(hoveredWeapon.gameObject);
+
+        if (currentWeapon != null)
+        {
+            Destroy(currentWeapon); // Destroy the current weapon you're holding
+        }
+
+        currentWeapon = hoveredWeapon.gameObject; // Update the current weapon reference
+
+        if (weaponInBox == hoveredWeapon.gameObject)
+        {
+            wasWeaponInBoxPickedUp = true; // Mark the box weapon as picked up
+            weaponInBox = null;            // Clear reference to the box weapon
+        }
+
+        hoveredWeapon.GetComponent<Outline>().enabled = false;
+        hoveredWeapon = null;
+    }
+
+    private void OpenItemBox(GameObject itemBox)
+    {
+        if (!isItemBoxOpen && PointsManager.Instance.points >= 1000)
+        {
+            Animator itemBoxAnimator = itemBox.GetComponent<Animator>();
+            itemBoxAnimator.SetTrigger("OPEN");
+            isItemBoxOpen = true;
+            PointsManager.Instance.RemovePoints(1000);
+            StartCoroutine(SpawnWeaponAfterDelay(2f, itemBox.transform));
+            StartCoroutine(CloseBoxAfterDelay(itemBoxAnimator, 10f));
+        }
+        else
+        {
+            print("Not enough points");
         }
     }
 
@@ -129,36 +148,17 @@ public class InteractionManager : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
 
-        // Instantiate the weapon at the spawn point in the chest
         if (weaponPrefabs.Length > 0 && weaponSpawnPoint != null)
         {
-            // Pick a random weapon prefab to spawn (or you can specify which one)
             int randomIndex = UnityEngine.Random.Range(0, weaponPrefabs.Length);
             GameObject weapon = Instantiate(weaponPrefabs[randomIndex], weaponSpawnPoint.position, Quaternion.identity);
-            
-            print("Weapon spawned inside the chest!");
-         
-            StartCoroutine(DestroyWeaponBeforeClosing(weapon));
+            weapon.transform.SetParent(chestTransform);
+            weaponInBox = weapon; // Track the weapon in the box
+            wasWeaponInBoxPickedUp = false; // Reset the pickup flag
         }
         else
         {
             print("No weapons or spawn point defined!");
-        }
-    }
-    private IEnumerator DestroyWeaponBeforeClosing(GameObject weapon)
-    {
-        // Wait just before closing the box to destroy the weapon
-        yield return new WaitForSeconds(7f); // You can adjust this delay
-
-        // Destroy the weapon just before closing
-        if (weapon != null && !weapon.GetComponent<WeaponScript>().isPickedUp)
-        {
-            Destroy(weapon);
-          
-        }
-        else if (weapon != null)
-        {
-            print("Weapon was picked up, not destroyed.");
         }
     }
 
@@ -166,11 +166,19 @@ public class InteractionManager : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
 
+        if (weaponInBox != null && !wasWeaponInBoxPickedUp)
+        {
+            Destroy(weaponInBox);
+            weaponInBox = null;
+            print("Weapon in the box destroyed as it was not picked up." +  "Status: " + wasWeaponInBoxPickedUp);
+        }
+
         if (itemBoxAnimator != null)
         {
             itemBoxAnimator.SetTrigger("CLOSE");
             isItemBoxOpen = false;
-            print("Closing the item box...");
         }
+
+        wasWeaponInBoxPickedUp = false; // Reset the flag after closing the box
     }
 }
