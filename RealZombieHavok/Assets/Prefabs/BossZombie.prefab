@@ -808,11 +808,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fb2dac3773c5cb42adda0318ed06feb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  minDistance: 1.5
   HP: 500
+  MaxHP: 0
   zombieHand: {fileID: 3839635563341486985}
   isDead: 0
+  pointsForKill: 500
 --- !u!195 &8244019619320123662
 NavMeshAgent:
   m_ObjectHideFlags: 0

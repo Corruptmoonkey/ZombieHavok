@@ -23,7 +23,9 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] GameObject Player;
     OptionsMenu OptionsMenu;
     [SerializeField] TargetHealthbar TargetHealthbar;
-    List<Canvas> OtherCanvases = new List<Canvas>();
+    List<Canvas> OtherCanvases = new();
+    WeaponScript WeaponScript;
+
     public void Start()
     {
         OptionsMenu = GetComponent<OptionsMenu>();
@@ -73,7 +75,13 @@ public class PauseMenu : MonoBehaviour
         Cursor.lockState = IsPaused ? CursorLockMode.Locked : CursorLockMode.None;
         Cursor.visible = !IsPaused;
         //disable weapon to prevent it from shooting with mouse clicks.
-        Player.GetComponentInChildren<WeaponScript>().isActiveWeapon = IsPaused;
+
+        WeaponScript = Player.GetComponentInChildren<WeaponScript>();
+        if (WeaponScript != null) //sometimes player has no weapon in inventory
+        {
+            WeaponScript.isActiveWeapon = IsPaused;
+        }
+
         //save changes to options when unpausing.
         OptionsMenu.SaveChanges();
 

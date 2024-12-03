@@ -7,6 +7,8 @@ using UnityEngine;
 
 public class WeaponScript : MonoBehaviour
 {
+    public bool isPickedUp = false;
+    public string Name;
     public bool isActiveWeapon;
     public GameObject bulletPrefab;
     public Transform bulletSpawn;
@@ -29,7 +31,7 @@ public class WeaponScript : MonoBehaviour
     public Vector3 spawnRotation;
     public Vector3 spawnSize;
 
-    private Animator animator;
+    public Animator animator;
 
     public bool isADS;
 
@@ -46,7 +48,8 @@ public class WeaponScript : MonoBehaviour
     public enum WeaponModel
     { 
         M1911,
-        AK47
+        AK47,
+        M4_8
     }
 
     public WeaponModel thisWeaponModel;
@@ -111,7 +114,7 @@ public class WeaponScript : MonoBehaviour
 
             if (AmmoManager.Instance.ammoDisplay != null)
             {
-                AmmoManager.Instance.ammoDisplay.text = $"{bulletsLeft / bulletsPerBurst}/{magazineSize / bulletsPerBurst}";
+                AmmoManager.Instance.ammoDisplay.text = bulletsLeft.ToString();
             }
         }
 
@@ -160,6 +163,7 @@ public class WeaponScript : MonoBehaviour
 
     private void Reload()
     {
+        if (AmmoManager.Instance.AmmoReserves[Name] <= 0) return;
         isReloading = true;
         SoundManager.Instance.PlayReloadSound(thisWeaponModel);
         animator.SetTrigger("RELOAD");
@@ -168,7 +172,8 @@ public class WeaponScript : MonoBehaviour
 
     private void ReloadCompleted()
     {
-        bulletsLeft = magazineSize;
+        
+        bulletsLeft = AmmoManager.Instance.RemoveFromReserve(this,bulletsLeft);
         isReloading = false;
     }
 

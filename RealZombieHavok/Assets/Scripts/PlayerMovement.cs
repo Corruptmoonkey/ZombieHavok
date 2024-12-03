@@ -24,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
     public float playerHeight; // The height of the player
     public float groundDrag; // The drag we will add to our player's movement
     public LayerMask whatIsGround; // A layer we will apply to our planes
-    bool grounded; // Tracks whether the player is grounded
+   public bool grounded; // Tracks whether the player is grounded
 
     // Jumping
     public float jumpForce;

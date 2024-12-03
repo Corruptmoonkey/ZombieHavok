@@ -39,7 +39,7 @@ public class Bullet : MonoBehaviour
 
             }
 
-            print("You hit a zombie!" + " HP remaining: " + objectWeHit.gameObject.GetComponent<Enemy>().getHP());
+          
            
 
             CreateBloodSpreadEffect(objectWeHit);
