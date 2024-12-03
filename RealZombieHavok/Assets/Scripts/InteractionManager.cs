@@ -106,22 +106,19 @@ public class InteractionManager : MonoBehaviour
 
     private void PickUpWeapon()
     {
-        if (hoveredWeapon == null) return;
 
+        wasWeaponInBoxPickedUp = true; // Mark the box weapon as picked up
+        print("Set to true");
         WeaponManager.Instance.PickUpWeapon(hoveredWeapon.gameObject);
 
-        if (currentWeapon != null)
-        {
-            Destroy(currentWeapon); // Destroy the current weapon you're holding
-        }
+  
 
-        currentWeapon = hoveredWeapon.gameObject; // Update the current weapon reference
 
-        if (weaponInBox == hoveredWeapon.gameObject)
-        {
-            wasWeaponInBoxPickedUp = true; // Mark the box weapon as picked up
+
+    
+           
             weaponInBox = null;            // Clear reference to the box weapon
-        }
+      
 
         hoveredWeapon.GetComponent<Outline>().enabled = false;
         hoveredWeapon = null;
