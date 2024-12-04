@@ -49,7 +49,8 @@ public class WeaponScript : MonoBehaviour
     { 
         M1911,
         AK47,
-        M4_8
+        M4_8,
+        Uzi
     }
 
     public WeaponModel thisWeaponModel;
