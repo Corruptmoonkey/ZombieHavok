@@ -5318,7 +5318,7 @@ MonoBehaviour:
   spawnSize: {x: 2, y: 2, z: 2}
   animator: {fileID: 0}
   isADS: 0
-  weaponDamage: 100
+  weaponDamage: 50
   thisWeaponModel: 0
   currentShootingMode: 0
 --- !u!95 &6413749160361460467

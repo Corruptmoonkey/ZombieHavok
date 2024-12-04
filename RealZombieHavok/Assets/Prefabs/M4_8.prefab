@@ -5243,7 +5243,7 @@ MonoBehaviour:
   spawnSize: {x: 3, y: 3, z: 3}
   animator: {fileID: 0}
   isADS: 0
-  weaponDamage: 20
+  weaponDamage: 80
   thisWeaponModel: 0
   currentShootingMode: 0
 --- !u!95 &6683957725879252410
