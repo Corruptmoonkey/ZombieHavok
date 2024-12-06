@@ -31,6 +31,13 @@ public class WeaponManager : MonoBehaviour
     private void Start()
     {
         activeWeaponSlot = weaponSlots[0];
+
+        //someone spawned weapon in  editor
+        if (activeWeaponSlot.transform.childCount != 0)
+        {
+            AddWeaponIntoActiveSlot(activeWeaponSlot.transform.GetChild(0).gameObject);
+        }
+       
     }
 
     private void Update()
