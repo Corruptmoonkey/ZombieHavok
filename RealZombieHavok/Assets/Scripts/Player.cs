@@ -86,7 +86,7 @@ public class Player : MonoBehaviour
        GetComponent<PlayerMovement>().enabled = false; // Movement is disabled
         cameraControlScript.enabled = false; // Camera controls are disabled
         cameraAnimator.enabled = true;
-        playerHealthUI.gameObject.SetActive(false);
+       // playerHealthUI.gameObject.SetActive(false);
         GetComponent<Blackout>().StartFade();
         StartCoroutine(ShowGameOverUI());
     }
