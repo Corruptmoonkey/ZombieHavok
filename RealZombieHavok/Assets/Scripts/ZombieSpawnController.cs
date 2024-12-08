@@ -89,9 +89,32 @@ public class ZombieSpawnController : MonoBehaviour
         }
 
         // Check if the current wave is 10 and spawn the boss
-        if (currentWave == 10)
+        // Bad coding practices, but I needed a way to increase the amount of bosses every 5 rounds 
+        if (currentWave >= 10 && currentWave < 15)
         {
             SpawnBoss();
+
+        }
+        else if(currentWave >= 15 && currentWave < 20)
+        {
+            SpawnBoss();
+            SpawnBoss();
+        }
+        else if (currentWave >= 20 && currentWave < 25)
+        {
+            SpawnBoss();
+            SpawnBoss(); SpawnBoss();
+        }
+        else if (currentWave >= 25 && currentWave < 30)
+        {
+            SpawnBoss(); SpawnBoss();
+            SpawnBoss(); SpawnBoss();
+        }
+
+        else if (currentWave >= 30 )
+        {
+            SpawnBoss(); SpawnBoss(); SpawnBoss();
+            SpawnBoss(); SpawnBoss();
         }
     }
 
@@ -153,22 +176,17 @@ public class ZombieSpawnController : MonoBehaviour
     {
 
         inCooldown = true;
-        if (currentWave != 10)
-        {
+       
             waveOverUI.gameObject.SetActive(true);
 
             yield return new WaitForSeconds(waveCooldown);
             inCooldown = false;
             waveOverUI.gameObject.SetActive(false);
 
-            currentZombiesPerWave += 0; // Increase the number of zombies for the next wave
+            currentZombiesPerWave += 5; // Increase the number of zombies for the next wave
             StartNextWave();
-        }
-        else
-        {
-            roundOverUI.gameObject.SetActive(true);
-            currentWaveUI.gameObject.SetActive(false);
-        }
+        
+     
     }
 
 

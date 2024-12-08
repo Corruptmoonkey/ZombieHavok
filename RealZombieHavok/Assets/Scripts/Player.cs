@@ -36,13 +36,18 @@ public class Player : MonoBehaviour
             print("Player Dead");
             PlayerDead();
             isDead = true;
-         
+            SoundManager.Instance.playerChannel.PlayOneShot(SoundManager.Instance.playerDie);
+            SoundManager.Instance.backgroundMusic.enabled = false;
+            SoundManager.Instance.zombieChannel.enabled = false;
+            SoundManager.Instance.playerChannel.clip = SoundManager.Instance.gameOverMusic;
+            SoundManager.Instance.playerChannel.PlayDelayed(1f);
         }
         else
         {
             print("Player Hit");
             SliderPlayerHealth.value = HP;
-
+            
+            SoundManager.Instance.playerChannel.PlayOneShot(SoundManager.Instance.playerHurt);
 
         }
     }

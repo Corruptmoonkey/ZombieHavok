@@ -20,7 +20,7 @@ public class SoundManager : MonoBehaviour
 
     public AudioSource throwablesChannel;
     public AudioClip grenadeSound;
-    /*
+    
     [Header("Zombie Sounds")]
     public AudioClip zombieWalking;
     public AudioClip zombieChase;
@@ -35,7 +35,10 @@ public class SoundManager : MonoBehaviour
     public AudioClip playerDie;
 
     public AudioClip gameOverMusic;
-    */
+
+    [Header("Game Music")]
+    public AudioSource backgroundMusic;
+    
     private void Awake()
     {
 

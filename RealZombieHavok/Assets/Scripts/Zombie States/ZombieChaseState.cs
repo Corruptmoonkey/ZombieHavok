@@ -25,6 +25,11 @@ public class ZombieChaseState : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        if (SoundManager.Instance.zombieChannel.isPlaying == false)
+        {
+            SoundManager.Instance.zombieChannel.PlayOneShot(SoundManager.Instance.zombieChase);
+            
+        }
         agent.SetDestination(player.position); // Zombie chases player
         animator.transform.LookAt(player); // Faces player
 
@@ -44,6 +49,7 @@ public class ZombieChaseState : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        agent.SetDestination(animator.transform.position);
+        agent.SetDestination(animator.transform.position); 
+        SoundManager.Instance.zombieChannel.Stop();
     }
 }

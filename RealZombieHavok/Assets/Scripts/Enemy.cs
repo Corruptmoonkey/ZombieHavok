@@ -47,6 +47,8 @@ public class Enemy : MonoBehaviour
             }
             isDead = true;
             zombieHand.gameObject.SetActive(false);
+            SoundManager.Instance.zombieChannel.PlayOneShot(SoundManager.Instance.zombieDeath);
+
             OnDeath();
             StartCoroutine(DestroyAfterDelay(8f)); // After 8 seconds the enemy will be destroyed
 
@@ -55,6 +57,7 @@ public class Enemy : MonoBehaviour
         else
         {
            animator.SetTrigger("DAMAGE");
+           SoundManager.Instance.zombieChannel.PlayOneShot(SoundManager.Instance.zombieHurt);
         }
     }
 
