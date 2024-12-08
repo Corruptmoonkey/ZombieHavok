@@ -100,7 +100,8 @@ public class Player : MonoBehaviour
     {
         yield return new WaitForSeconds(1f); // Delay
         gameOverUI.gameObject.SetActive(true);
-
+        yield return new WaitForSeconds(5f); // Delay
+        PauseMenu.Instance.ToMainMenu();
     }
 }
 

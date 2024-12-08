@@ -35,7 +35,14 @@ public class WeaponManager : MonoBehaviour
         //someone spawned weapon in  editor
         if (activeWeaponSlot.transform.childCount != 0)
         {
-            AddWeaponIntoActiveSlot(activeWeaponSlot.transform.GetChild(0).gameObject);
+            WeaponScript weapon = activeWeaponSlot.transform.GetComponentInChildren<WeaponScript>();
+            weapon.isActiveWeapon = true;
+            weapon.animator.enabled = true;
+
+            // give starting ammo when first picked up
+            AmmoManager.Instance.InitializeAmmo(weapon.Name, weapon.magazineSize);
+            AmmoManager.Instance.UpdateReserveText(weapon);
+            Debug.Log("attempted to give weapon functionality at start");
         }
        
     }

@@ -25,6 +25,23 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] TargetHealthbar TargetHealthbar;
     List<Canvas> OtherCanvases = new();
     WeaponScript WeaponScript;
+    public static PauseMenu Instance { get; set; }
+
+    private void Awake()
+    {
+
+        {
+            if (Instance != null && Instance != this)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                Instance = this;
+            }
+        }
+
+    }
 
     public void Start()
     {
@@ -56,6 +73,8 @@ public class PauseMenu : MonoBehaviour
     {
         SceneManager.LoadScene("MainMenu");
         Time.timeScale = 1f;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         OptionsMenu.SaveChanges();
     }
 
@@ -75,7 +94,7 @@ public class PauseMenu : MonoBehaviour
         Cursor.lockState = IsPaused ? CursorLockMode.Locked : CursorLockMode.None;
         Cursor.visible = !IsPaused;
         //disable weapon to prevent it from shooting with mouse clicks.
-
+        SoundManager.Instance.gameObject.SetActive(IsPaused);
         WeaponScript = Player.GetComponentInChildren<WeaponScript>();
         if (WeaponScript != null) //sometimes player has no weapon in inventory
         {
