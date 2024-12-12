@@ -47,7 +47,7 @@ public class PauseMenu : MonoBehaviour
     {
         OptionsMenu = GetComponent<OptionsMenu>();
         FindCanvases();
-
+        Cursor.lockState = CursorLockMode.Locked;
     }
     void Update()
     {

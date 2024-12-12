@@ -112,7 +112,7 @@ public class SpawnDrop : MonoBehaviour
     { //temp
         if (Input.GetKeyDown(KeyCode.F1))
         {
-            SpawnRandom();
+            Time.timeScale = 0.1f;
         }
     }
 }

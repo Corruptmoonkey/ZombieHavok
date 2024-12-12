@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
 
     public void Start()
     {
+        HP = 100;
         //HP is now displayed by this Slider by Steven Pichelman
         SliderPlayerHealth.value = HP;
     }

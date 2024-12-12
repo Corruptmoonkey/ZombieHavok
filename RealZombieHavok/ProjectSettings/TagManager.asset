@@ -13,6 +13,7 @@ TagManager:
   - Waypoints
   - ZombieHand
   - HealthDrop
+  - AmmoDrop
   layers:
   - Default
   - TransparentFX
@@ -20,8 +21,8 @@ TagManager:
   - Ground
   - Water
   - UI
-  - 
-  - 
+  - Player
+  - Bullet
   - 
   - 
   - 
